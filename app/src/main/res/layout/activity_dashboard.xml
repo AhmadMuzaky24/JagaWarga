@@ -117,7 +117,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_report" />
+                        android:src="@drawable/icon_laporan" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_schedule" />
+                        android:src="@drawable/icon_schedule" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_swap" />
+                        android:src="@drawable/icon_swap" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -335,4 +335,5 @@
             </ScrollView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
