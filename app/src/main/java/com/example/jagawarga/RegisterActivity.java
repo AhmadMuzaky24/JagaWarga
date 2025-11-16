@@ -25,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
         });
 
+        boolean[] isPasswordVisible = {false};
+
         binding.btnTogglePassword2.setOnClickListener(v -> {
             if (isPasswordVisible[0]) {
                 // Hide password
