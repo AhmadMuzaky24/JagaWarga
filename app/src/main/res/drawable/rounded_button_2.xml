@@ -2,7 +2,7 @@
     android:shape="rectangle">
 
     <!-- Warna latar tombol -->
-    <solid android:color="#3F51B5" />
+    <solid android:color="#E9E1E1" />
 
     <!-- Sudut melengkung -->
     <corners android:radius="10dp" />
