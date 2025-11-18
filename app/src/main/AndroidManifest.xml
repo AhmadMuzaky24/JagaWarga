@@ -33,8 +33,10 @@
             android:name=".RegisterActivity">
         </activity>
 
+        <activity
+            android:name=".TukarJadwalActivity">
+        </activity>
 
-        <activity android:name=".TukarJadwalActivity" />
 
     </application>
 

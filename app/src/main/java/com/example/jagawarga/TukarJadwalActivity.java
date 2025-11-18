@@ -1,51 +1,35 @@
 package com.example.jagawarga;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.EditText;
-import android.view.View;
+import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TukarJadwalActivity extends AppCompatActivity {
 
-    EditText inputIdJadwalSaya, inputIdJadwalTujuan;
-    Button btnRequestTukar;
-    ImageButton btnBack;
+    private ImageButton btnBackAbsen;
+    private Button btnTukarAbsen;
+    private EditText inputIdJadwalSaya, inputIdJadwalTujuan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tukar_jadwal);
 
-        // --- Inisialisasi komponen dari XML ---
-        btnBack = findViewById(R.id.btnBackAbsen);
+        btnBackAbsen = findViewById(R.id.btnBackAbsen);
+        btnTukarAbsen = findViewById(R.id.btnTukarAbsen);
         inputIdJadwalSaya = findViewById(R.id.inputIdJadwalSaya);
         inputIdJadwalTujuan = findViewById(R.id.inputIdJadwalTujuan);
-        btnRequestTukar = findViewById(R.id.btnTukarAbsen);
 
-        // --- Tombol Back ke Halaman Sebelumnya ---
-        btnBack.setOnClickListener(v -> onBackPressed());
+        btnBackAbsen.setOnClickListener(v -> onBackPressed());
 
-        // --- Logic awal tombol Request Tukar ---
-        btnRequestTukar.setOnClickListener(v -> {
+        // nanti logic tukar jadwal taruh di sini
+        btnTukarAbsen.setOnClickListener(v -> {
             String jadwalSaya = inputIdJadwalSaya.getText().toString().trim();
             String jadwalTujuan = inputIdJadwalTujuan.getText().toString().trim();
-
-            // Validasi sederhana
-            if (jadwalSaya.isEmpty()) {
-                inputIdJadwalSaya.setError("ID Jadwal Saya harus diisi");
-                return;
-            }
-
-            if (jadwalTujuan.isEmpty()) {
-                inputIdJadwalTujuan.setError("ID Jadwal Tujuan harus diisi");
-                return;
-            }
-
-            // Nanti logic API / database masuk di sini
-            // Contoh sementara:
-            // Toast.makeText(this, "Request Tukar berhasil dikirim!", Toast.LENGTH_SHORT).show();
+            // TODO: proses tukar jadwal di sini
         });
     }
 }
