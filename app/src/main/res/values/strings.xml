@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">JagaWarga</string>
+
+    <!-- Absen page -->
+    <string name="title_absen">Absen</string>
+    <string name="label_id_jadwal_saya">ID Jadwal Saya</string>
+    <string name="label_id_jadwal_tujuan">ID Jadwal Tujuan</string>
+    <string name="btn_absen_sekarang">ABSEN SEKARANG</string>
+    <string name="cd_kembali">Kembali</string>
+    <string name="cd_absen_illustration">Ilustrasi absen ronda</string>
 </resources>

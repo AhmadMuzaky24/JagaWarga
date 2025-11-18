@@ -1,58 +1,51 @@
 package com.example.jagawarga;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.textfield.TextInputEditText;
+import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.EditText;
+import android.view.View;
 
 public class TukarJadwalActivity extends AppCompatActivity {
 
-    private ImageButton btnBack;
-    private TextInputEditText etJadwalSaya, etJadwalTujuan;
-    private Button btnRequest;
+    EditText inputIdJadwalSaya, inputIdJadwalTujuan;
+    Button btnRequestTukar;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tukar_jadwal);
 
-        // Inisialisasi View
-        btnBack = findViewById(R.id.btnBack);
-        etJadwalSaya = findViewById(R.id.etJadwalSaya);
-        etJadwalTujuan = findViewById(R.id.etJadwalTujuan);
-        btnRequest = findViewById(R.id.btnRequest);
+        // --- Inisialisasi komponen dari XML ---
+        btnBack = findViewById(R.id.btnBackAbsen);
+        inputIdJadwalSaya = findViewById(R.id.inputIdJadwalSaya);
+        inputIdJadwalTujuan = findViewById(R.id.inputIdJadwalTujuan);
+        btnRequestTukar = findViewById(R.id.btnTukarAbsen);
 
-        // Tombol kembali ke activity sebelumnya
+        // --- Tombol Back ke Halaman Sebelumnya ---
         btnBack.setOnClickListener(v -> onBackPressed());
 
-        // Tombol "Request Tukar"
-        btnRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // --- Logic awal tombol Request Tukar ---
+        btnRequestTukar.setOnClickListener(v -> {
+            String jadwalSaya = inputIdJadwalSaya.getText().toString().trim();
+            String jadwalTujuan = inputIdJadwalTujuan.getText().toString().trim();
 
-                String jadwalSaya = etJadwalSaya.getText() != null ? etJadwalSaya.getText().toString().trim() : "";
-                String jadwalTujuan = etJadwalTujuan.getText() != null ? etJadwalTujuan.getText().toString().trim() : "";
-
-                if (jadwalSaya.isEmpty()) {
-                    etJadwalSaya.setError("Harap isi ID Jadwal Saya");
-                    return;
-                }
-
-                if (jadwalTujuan.isEmpty()) {
-                    etJadwalTujuan.setError("Harap isi ID Jadwal Tujuan");
-                    return;
-                }
-
-                // Contoh aksi (bisa diganti dengan logic API atau Firebase)
-                Toast.makeText(TukarJadwalActivity.this,
-                        "Request Tukar dikirim:\nDari " + jadwalSaya + " ke " + jadwalTujuan,
-                        Toast.LENGTH_LONG).show();
+            // Validasi sederhana
+            if (jadwalSaya.isEmpty()) {
+                inputIdJadwalSaya.setError("ID Jadwal Saya harus diisi");
+                return;
             }
+
+            if (jadwalTujuan.isEmpty()) {
+                inputIdJadwalTujuan.setError("ID Jadwal Tujuan harus diisi");
+                return;
+            }
+
+            // Nanti logic API / database masuk di sini
+            // Contoh sementara:
+            // Toast.makeText(this, "Request Tukar berhasil dikirim!", Toast.LENGTH_SHORT).show();
         });
     }
 }
