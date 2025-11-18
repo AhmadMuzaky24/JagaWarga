@@ -37,6 +37,15 @@
             android:name=".TukarJadwalActivity">
         </activity>
 
+        <activity
+            android:name=".AbsenRondaActivity">
+        </activity>
+
+        <activity
+            android:name=".LaporanKeamananActivity">
+        </activity>
+
+
 
     </application>
 
