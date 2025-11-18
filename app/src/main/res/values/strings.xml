@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">JagaWarga</string>
+
+    <string name="title_tukar_jadwal">Tukar Jadwal</string>
+    <string name="cd_kembali">Kembali</string>
+    <string name="cd_absen_illustration">Ilustrasi tukar jadwal</string>
+    <string name="label_id_jadwal_saya">ID Jadwal Saya</string>
+    <string name="label_id_jadwal_tujuan">ID Jadwal Tujuan</string>
+    <string name="btn_absen_sekarang">Tukar Jadwal</string>
 </resources>

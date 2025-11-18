@@ -34,14 +34,12 @@
 
         <activity
             android:name=".RegisterActivity">
-
         </activity>
 
-
         <activity
-            android:name=".TukarJadwalActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".TukarJadwalActivity">
+        </activity>
+
 
     </application>
 

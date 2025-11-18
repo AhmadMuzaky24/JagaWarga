@@ -4,111 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".TukarJadwalActivity">
+    android:background="@drawable/bg_gradient"
+    android:padding="24dp"
+    tools:context=".TukarJadwalActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="11dp">
 
-    <!-- Tombol Kembali -->
+    <!-- Tombol Back biru, icon putih -->
+
+    <!-- Judul Absen (biru, lebih kecil & tidak terlalu bold) -->
+
     <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Kembali"
-        android:padding="8dp"
-        android:src="@drawable/ic_back_arrow"
+        android:id="@+id/btnBackAbsen"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_back_button_blue"
+        android:contentDescription="@string/cd_kembali"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@+id/textTitleAbsen"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_arrow"
+        app:tint="@android:color/white" />
+
+    <!-- Ilustrasi -->
+    <TextView
+        android:id="@+id/textTitleAbsen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_tukar_jadwal"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Judul -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tukar Jadwal"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@id/btnBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4" />
-
-    <!-- Gambar Utama -->
-
-    <!-- Input ID Jadwal Saya -->
-
     <ImageView
-        android:id="@+id/imgIllustration"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="68dp"
-        android:contentDescription="Ilustrasi Tukar Jadwal"
+        android:id="@+id/imgAbsenIllustration"
+        android:layout_width="335dp"
+        android:layout_height="305dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/cd_absen_illustration"
+        android:scaleType="fitCenter"
         android:src="@drawable/tukar_jadwal_illustration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textTitleAbsen" />
 
-    <!-- Input ID Jadwal Tujuan -->
+    <!-- Label ID Jadwal Saya -->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutJadwalSaya"
+    <!-- Box input ID Jadwal Saya (super rounded, lebar penuh, tanpa hint) -->
+
+    <!-- Label ID Jadwal Tujuan -->
+
+    <EditText
+        android:id="@+id/inputIdJadwalSaya"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="108dp"
-        android:hint="ID Jadwal Saya"
-        app:boxStrokeColor="#03A9F4"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_absen_background"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgIllustration"
-        app:startIconDrawable="@drawable/ic_calendar">
+        app:layout_constraintTop_toBottomOf="@id/textIdJadwalSaya" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etJadwalSaya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pilih Tanggal"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutJadwalTujuan"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textIdJadwalTujuan"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="ID Jadwal Tujuan"
-        app:startIconDrawable="@drawable/ic_calendar"
-        app:boxStrokeColor="#03A9F4"
-        app:layout_constraintTop_toBottomOf="@id/layoutJadwalSaya"
         android:layout_marginTop="16dp"
+        android:labelFor="@id/inputIdJadwalTujuan"
+        android:text="@string/label_id_jadwal_tujuan"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="32dp">
+        app:layout_constraintTop_toBottomOf="@id/inputIdJadwalSaya" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etJadwalTujuan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Pilih Warga" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Tombol Request Tukar -->
-    <Button
-        android:id="@+id/btnRequest"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textIdJadwalSaya"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request Tukar"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#03A9F4"
-        android:layout_marginHorizontal="64dp"
-        android:layout_marginTop="32dp"
-        app:cornerRadius="12dp"
-        app:layout_constraintTop_toBottomOf="@id/layoutJadwalTujuan"
+        android:layout_marginTop="8dp"
+        android:labelFor="@id/inputIdJadwalSaya"
+        android:text="@string/label_id_jadwal_saya"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/imgAbsenIllustration" />
+
+    <!-- Box input ID Jadwal Tujuan -->
+
+    <!-- Tombol ABSEN SEKARANG -->
+    <EditText
+        android:id="@+id/inputIdJadwalTujuan"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_absen_background"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textIdJadwalTujuan" />
+
+    <Button
+        android:id="@+id/btnTukarAbsen"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/blue"
+        android:text="@string/btn_absen_sekarang"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputIdJadwalTujuan"
+        app:layout_constraintVertical_bias="0.035" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
