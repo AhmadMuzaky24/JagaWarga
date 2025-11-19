@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- putih sedikit transparan, boleh kamu ganti -->
+    <solid android:color="#E6E6E6" />
+    <!-- radius besar supaya benar-benar bulat -->
+    <corners android:radius="999dp" />
+</shape>

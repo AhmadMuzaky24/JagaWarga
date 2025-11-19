@@ -47,10 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnTogglePassword2.setOnClickListener(v -> {
             if (isPasswordVisible[0]) {
                 binding.inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                binding.btnTogglePassword2.setImageResource(R.drawable.outline_key_24);
+                binding.btnTogglePassword2.setImageResource(R.drawable.icon_mata2);
             } else {
                 binding.inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                binding.btnTogglePassword2.setImageResource(R.drawable.outline_key_off_24);
+                binding.btnTogglePassword2.setImageResource(R.drawable.icon_mata1);
             }
             binding.inputPassword.setSelection(binding.inputPassword.getText().length());
             isPasswordVisible[0] = !isPasswordVisible[0];
