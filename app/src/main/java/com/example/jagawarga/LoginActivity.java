@@ -38,14 +38,14 @@ public class LoginActivity extends AppCompatActivity {
                         InputType.TYPE_CLASS_TEXT |
                                 InputType.TYPE_TEXT_VARIATION_PASSWORD
                 );
-                binding.btnTogglePassword.setImageResource(R.drawable.outline_key_24);
+                binding.btnTogglePassword.setImageResource(R.drawable.icon_mata2);
             } else {
                 // Show password
                 binding.inputPassword.setInputType(
                         InputType.TYPE_CLASS_TEXT |
                                 InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                 );
-                binding.btnTogglePassword.setImageResource(R.drawable.outline_key_off_24);
+                binding.btnTogglePassword.setImageResource(R.drawable.icon_mata1);
             }
 
             // Agar cursor tetap di akhir teks

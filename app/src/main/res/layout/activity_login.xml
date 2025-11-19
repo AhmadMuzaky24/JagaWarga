@@ -143,13 +143,13 @@
 
     <ImageView
         android:id="@+id/btnTogglePassword"
-        android:layout_width="36dp"
-        android:layout_height="31dp"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
         android:layout_marginEnd="12dp"
         app:layout_constraintBottom_toBottomOf="@id/inputPassword"
         app:layout_constraintEnd_toEndOf="@id/inputPassword"
         app:layout_constraintTop_toTopOf="@id/inputPassword"
-        app:srcCompat="@drawable/outline_key_24" />
+        app:srcCompat="@drawable/icon_mata2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rememberContainer"
