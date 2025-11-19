@@ -8,27 +8,10 @@
     android:backgroundTintMode="src_in"
     android:padding="24dp">
 
-    <!-- Logo -->
-
-    <!-- Judul -->
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="338dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="239dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnMasukTab"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rounded_button_2" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="70dp"
         android:layout_height="80dp"
-        android:layout_marginTop="36dp"
         android:src="@drawable/jjagawarga_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -48,7 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
 
-    <!-- Subjudul -->
     <TextView
         android:id="@+id/textSubtitle"
         android:layout_width="wrap_content"
@@ -61,90 +43,127 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
-    <!-- Tab Masuk / Daftar -->
+    <ImageView
+        android:id="@+id/tabBackground"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSubtitle"
+        app:srcCompat="@drawable/rounded_button_2" />
 
-    <!-- Nomor Telepon -->
+    <Button
+        android:id="@+id/btnMasukTab"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#FFFFFF"
+        android:text="Masuk"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tabBackground"
+        app:layout_constraintEnd_toStartOf="@+id/btnMasukTab2"
+        app:layout_constraintStart_toStartOf="@id/tabBackground"
+        app:layout_constraintTop_toTopOf="@id/tabBackground" />
 
-    <!-- Password -->
+    <Button
+        android:id="@+id/btnMasukTab2"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#00FFFFFF"
+        android:text="Daftar"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tabBackground"
+        app:layout_constraintEnd_toEndOf="@id/tabBackground"
+        app:layout_constraintStart_toEndOf="@+id/btnMasukTab"
+        app:layout_constraintTop_toTopOf="@id/tabBackground" />
 
-    <!-- Ingat Saya + Lupa Sandi -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Nomor Telepon"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabBackground" />
 
     <EditText
         android:id="@+id/inputPhone"
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="46dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/edittext_background"
         android:hint=""
         android:inputType="phone"
         android:padding="12dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSubtitle" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/blue"
-        android:padding="12dp"
-        android:text="Masuk"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rememberContainer"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="132dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="352dp"
-        android:text="Nomor Telepon"
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Password"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/inputPhone"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Tombol Masuk -->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputPhone" />
 
     <EditText
         android:id="@+id/inputPassword"
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/edittext_background"
         android:hint=""
         android:inputType="textPassword"
         android:padding="12dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputPhone" />
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <ImageView
+        android:id="@+id/btnTogglePassword"
+        android:layout_width="36dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/inputPassword"
+        app:layout_constraintEnd_toEndOf="@id/inputPassword"
+        app:layout_constraintTop_toTopOf="@id/inputPassword"
+        app:srcCompat="@drawable/outline_key_24" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rememberContainer"
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputPassword">
 
         <CheckBox
             android:id="@+id/checkRemember"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:text="Ingat Saya"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -163,81 +182,22 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/btnTogglePassword"
-        android:layout_width="36dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="466dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/outline_key_24" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="77dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="432dp"
-        android:text="Password"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/inputPassword"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/btnMasukTab2"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="162dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="184dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="102dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#00FFFFFF"
-        android:text="Daftar"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <Button
-        android:id="@+id/btnMasukTab"
+        android:id="@+id/btnLogin"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="162dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginEnd="207dp"
-        android:layout_marginBottom="102dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/blue"
+        android:padding="12dp"
         android:text="Masuk"
-        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@id/rememberContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
