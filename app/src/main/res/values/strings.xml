@@ -1,11 +1,23 @@
 <resources>
     <string name="app_name">JagaWarga</string>
 
-    <!-- Absen page -->
-    <string name="title_absen">Absen</string>
+    <string name="title_tukar_jadwal">Tukar Jadwal</string>
+    <string name="cd_kembali">Kembali</string>
+    <string name="cd_absen_illustration">Ilustrasi tukar jadwal</string>
     <string name="label_id_jadwal_saya">ID Jadwal Saya</string>
     <string name="label_id_jadwal_tujuan">ID Jadwal Tujuan</string>
-    <string name="btn_absen_sekarang">ABSEN SEKARANG</string>
-    <string name="cd_kembali">Kembali</string>
-    <string name="cd_absen_illustration">Ilustrasi absen ronda</string>
+    <string name="btn_absen_sekarang">Tukar Jadwal</string>
+
+    <string name="title_absen_ronda">Absen Ronda</string>
+
+    <string name="label_tanggal_absen">Tanggal Absen</string>
+    <string name="label_shift">Shift</string>
+    <string name="label_lokasi_ronda">Lokasi Ronda</string>
+
+    <string name="hint_pilih_tanggal">Pilih Tanggal</string>
+    <string name="hint_pilih_shift">Pilih Shift</string>
+    <string name="hint_pilih_lokasi">Pilih Lokasi</string>
+
+    <string name="btn_upload_laporan">Upload Laporan</string>
+
 </resources>

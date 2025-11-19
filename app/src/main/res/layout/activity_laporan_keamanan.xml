@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:fillViewport="true"
+    tools:context=".LaporanKeamananActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Tombol Back -->
+        <ImageButton
+            android:id="@+id/btnBackLaporan"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_back_button_blue"
+            android:padding="10dp"
+            android:contentDescription="Kembali"
+            app:srcCompat="@drawable/ic_back_arrow"
+            app:tint="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Judul -->
+        <TextView
+            android:id="@+id/textTitleLaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Laporan Keamanan"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Ilustrasi -->
+        <ImageView
+            android:id="@+id/imgLaporanIllustration"
+            android:layout_width="0dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="36dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/absen_illustration"
+            app:layout_constraintTop_toBottomOf="@id/textTitleLaporan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Jenis Laporan -->
+        <TextView
+            android:id="@+id/textJenisLaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Jenis Laporan"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/imgLaporanIllustration"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerJenisLaporan"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_absen_background"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/textJenisLaporan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Tanggal Laporan -->
+        <TextView
+            android:id="@+id/textTanggalLaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tanggal Laporan"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/spinnerJenisLaporan"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/inputTanggalLaporan"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_absen_background"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/textTanggalLaporan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Detail Laporan -->
+        <TextView
+            android:id="@+id/textDetailLaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Detail Laporan"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/inputTanggalLaporan"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/inputDetailLaporan"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_absen_background"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:minLines="4"
+            app:layout_constraintTop_toBottomOf="@id/textDetailLaporan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Tombol Upload -->
+        <Button
+            android:id="@+id/btnUploadLaporanKeamanan"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/blue"
+            android:text="Upload Laporan"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/inputDetailLaporan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
