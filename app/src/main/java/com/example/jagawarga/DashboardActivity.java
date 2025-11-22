@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,9 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        String namaUser = getIntent().getStringExtra("nama_user");
+        TextView tvGreeting = findViewById(R.id.tvGreeting);
+        tvGreeting.setText("Hai, " + namaUser + " !");
 
         // inisialisasi view
         menuAbsen = findViewById(R.id.menuAbsen);

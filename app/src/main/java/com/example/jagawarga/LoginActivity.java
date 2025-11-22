@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         String telepon = binding.inputPhone.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        String url = "https://smilies-entities-locator-physiology.trycloudflare.com/jagawarga/login.php";
+        String url = "https://follow-britannica-headed-misc.trycloudflare.com/jagawarga/login.php";
 
         Log.d("DEBUG_LOGIN", "Mengirim request ke: " + url);
 
@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            intent.putExtra("nama_user", nama);
                             startActivity(intent);
                             finish(); // opsional: supaya user tidak kembali ke login setelah tekan back
 
