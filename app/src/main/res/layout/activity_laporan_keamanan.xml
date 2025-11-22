@@ -11,50 +11,56 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:padding="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
 
         <!-- Tombol Back -->
         <ImageButton
             android:id="@+id/btnBackLaporan"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="12dp"
             android:background="@drawable/bg_back_button_blue"
-            android:padding="10dp"
             android:contentDescription="Kembali"
-            app:srcCompat="@drawable/ic_back_arrow"
-            app:tint="@android:color/white"
+            android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back_arrow"
+            app:tint="@android:color/white" />
 
         <!-- Judul -->
         <TextView
             android:id="@+id/textTitleLaporan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:text="Laporan Keamanan"
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Ilustrasi -->
+
+        <!-- Jenis Laporan -->
+
         <ImageView
             android:id="@+id/imgLaporanIllustration"
             android:layout_width="0dp"
             android:layout_height="260dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/absen_illustration"
-            app:layout_constraintTop_toBottomOf="@id/textTitleLaporan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/textTitleLaporan" />
 
-        <!-- Jenis Laporan -->
         <TextView
             android:id="@+id/textJenisLaporan"
             android:layout_width="wrap_content"
@@ -63,8 +69,8 @@
             android:text="Jenis Laporan"
             android:textColor="@color/gray"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/imgLaporanIllustration"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgLaporanIllustration" />
 
         <Spinner
             android:id="@+id/spinnerJenisLaporan"
@@ -72,10 +78,10 @@
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_absen_background"
-            android:paddingHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/textJenisLaporan"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/textJenisLaporan" />
 
         <!-- Tanggal Laporan -->
         <TextView
@@ -83,11 +89,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Tanggal Laporan"
+            android:text="Tanggal Dan Waktu Laporan"
             android:textColor="@color/gray"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/spinnerJenisLaporan"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerJenisLaporan" />
 
         <EditText
             android:id="@+id/inputTanggalLaporan"
@@ -96,11 +102,11 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_absen_background"
             android:inputType="text"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="12dp"
-            app:layout_constraintTop_toBottomOf="@id/textTanggalLaporan"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/textTanggalLaporan" />
 
         <!-- Detail Laporan -->
         <TextView
@@ -111,41 +117,46 @@
             android:text="Detail Laporan"
             android:textColor="@color/gray"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/inputTanggalLaporan"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputTanggalLaporan" />
+
+        <!-- Tombol Upload -->
+
 
         <EditText
             android:id="@+id/inputDetailLaporan"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_absen_background"
             android:gravity="top|start"
-            android:inputType="textMultiLine"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="12dp"
-            android:minLines="4"
-            app:layout_constraintTop_toBottomOf="@id/textDetailLaporan"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="3"
+            android:minLines="2"
+            android:padding="12dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btnUploadLaporanKeamanan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textDetailLaporan"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <!-- Tombol Upload -->
         <Button
             android:id="@+id/btnUploadLaporanKeamanan"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:text="Upload Laporan"
             android:textColor="@android:color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/inputDetailLaporan"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class DashboardActivity extends AppCompatActivity {
 
     // properti (konsep PBO: simpan state objek di dalam class)
@@ -22,6 +27,14 @@ public class DashboardActivity extends AppCompatActivity {
         String namaUser = getIntent().getStringExtra("nama_user");
         TextView tvGreeting = findViewById(R.id.tvGreeting);
         tvGreeting.setText("Hai, " + namaUser + " !");
+
+        //Set tanggal hari ini
+        TextView tanggal_current = findViewById(R.id.tanggal_current);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
+        String tanggal = sdf.format(calendar.getTime());
+        tanggal_current.setText(tanggal);
+
 
         // inisialisasi view
         menuAbsen = findViewById(R.id.menuAbsen);

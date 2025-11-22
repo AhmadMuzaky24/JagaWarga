@@ -85,6 +85,7 @@
                     android:textStyle="normal" />
 
                 <TextView
+                    android:id="@+id/tanggal_current"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-5dp"

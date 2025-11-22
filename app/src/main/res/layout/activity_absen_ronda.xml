@@ -9,31 +9,34 @@
     tools:context=".AbsenRondaActivity">
 
     <!-- Tombol Back -->
+
     <ImageButton
         android:id="@+id/btnBackAbsen"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
         android:background="@drawable/bg_back_button_blue"
-        android:padding="10dp"
         android:contentDescription="Kembali"
-        app:srcCompat="@drawable/ic_back_arrow"
-        app:tint="@android:color/white"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_arrow"
+        app:tint="@android:color/white" />
 
     <!-- Judul -->
+
     <TextView
         android:id="@+id/textTitleAbsen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Absen Ronda"
         android:textColor="@color/blue"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnBackAbsen"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -49,91 +52,75 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textTitleAbsen" />
 
-    <TextView
-        android:id="@+id/textTanggalAbsen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Tanggal Absen"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/imgAbsenIllustration"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerTanggalAbsen"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_absen_background"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textTanggalAbsen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/textShift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Shift"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/spinnerTanggalAbsen"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerShift"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_absen_background"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textShift"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textLokasiRonda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Lokasi Ronda"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/spinnerShift"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerLokasiRonda"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_absen_background"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textLokasiRonda"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnUploadLaporan"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/blue"
-        android:text="Upload Laporan"
+        android:text="KIRIM ABSENSI"
         android:textColor="@android:color/white"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerLokasiRonda"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/Tanggal_absen"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edittext_absen_background"
+        android:gravity="center"
+        android:text="   Sabtu, 22 November 2025"
+        android:textAlignment="textStart"
+        android:textColor="#83040303"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTanggalAbsen" />
+
+    <EditText
+        android:id="@+id/insert_absenID"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edittext_absen_background"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/btnUploadLaporan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textShift"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textTanggalAbsen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Tanggal Absen"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAbsenIllustration" />
+
+    <TextView
+        android:id="@+id/textShift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="ID Jadwal Ronda"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Tanggal_absen" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
