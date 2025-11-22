@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
                     Log.d("API_RESPONSE", response);   // <--- lihat JSON realtime di Logcat
-                    Toast.makeText(this, "Response diterima!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Berhasil Daftar!\nSilahkan Tunggu, Datamu Lagi Diverifikasi", Toast.LENGTH_SHORT).show();
                 },
                 error -> {
                     Log.e("API_ERROR", "Error: " + error.toString());
