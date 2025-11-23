@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         String telepon = binding.inputPhone.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        String url = "https://writing-aimed-afterwards-prefers.trycloudflare.com/jagawarga/login.php";
+        String url = "https://numbers-jersey-sixth-structured.trycloudflare.com/jagawarga/login.php";
 
         Log.d("DEBUG_LOGIN", "Mengirim request ke: " + url);
 
