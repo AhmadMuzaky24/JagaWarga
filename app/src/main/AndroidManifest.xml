@@ -41,6 +41,10 @@
         </activity>
 
         <activity
+            android:name=".JadwalRondaActivity">
+        </activity>
+
+        <activity
             android:name=".AbsenRondaActivity">
         </activity>
 
