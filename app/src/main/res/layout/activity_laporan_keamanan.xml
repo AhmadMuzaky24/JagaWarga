@@ -104,6 +104,7 @@
             android:inputType="text"
             android:paddingHorizontal="12dp"
             android:paddingVertical="12dp"
+            android:textColor="#A7000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textTanggalLaporan" />
@@ -128,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/edittext_absen_background"
             android:gravity="top|start"
             android:inputType="textMultiLine|textCapSentences"

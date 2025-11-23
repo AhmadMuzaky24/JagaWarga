@@ -267,7 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
-                    android:text="Hubungi Petugas Ronda"
+                    android:text="Hubungi Pos Ronda"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -284,134 +284,11 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_height="68dp"
                         android:gravity="center"
+                        android:orientation="horizontal"
                         android:paddingHorizontal="16dp"
-                        android:paddingVertical="14dp">
-
-                        <!-- Iqbal -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <!-- BOX ABU-ABU -->
-                            <LinearLayout
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:background="@drawable/menu_button_gray"
-                                android:padding="8dp">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_user1" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Iqbal"
-                                android:textColor="@color/black"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <!-- Muzaky -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:background="@drawable/menu_button_gray"
-                                android:padding="8dp">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_user1" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Muzaky"
-                                android:textColor="@color/black"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <!-- Fikri -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:background="@drawable/menu_button_gray"
-                                android:padding="8dp">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_user1" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Fikri"
-                                android:textColor="@color/black"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <!-- Asep -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:background="@drawable/menu_button_gray"
-                                android:padding="8dp">
-
-                                <ImageView
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icon_user1" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="Asep"
-                                android:textColor="@color/black"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:paddingVertical="14dp" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
