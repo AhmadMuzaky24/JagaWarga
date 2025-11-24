@@ -10,8 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class JadwalRondaActivity extends AppCompatActivity {
@@ -31,6 +35,14 @@ public class JadwalRondaActivity extends AppCompatActivity {
         initViews();
         initDate();
         setupListeners();
+
+        //get tanggal hari ini
+        TextView textTanggal = findViewById(R.id.textTanggalPilihan);
+        Calendar calendar = Calendar.getInstance();
+        Date today = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd MMMM", new Locale("id", "ID"));
+        String formattedDate = sdf.format(today);
+        textTanggal.setText(formattedDate);
     }
 
     private void initViews() {
@@ -87,4 +99,5 @@ public class JadwalRondaActivity extends AppCompatActivity {
         if (text == null || text.isEmpty()) return text;
         return text.substring(0,1).toUpperCase() + text.substring(1);
     }
+
 }

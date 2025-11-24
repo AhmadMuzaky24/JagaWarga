@@ -1,6 +1,7 @@
 package com.example.jagawarga;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         String telepon = binding.inputPhone.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        String url = "https://numbers-jersey-sixth-structured.trycloudflare.com/jagawarga/login.php";
+        String url = "https://intl-edited-sticker-jam.trycloudflare.com/jagawarga/login.php";
 
         Log.d("DEBUG_LOGIN", "Mengirim request ke: " + url);
 
@@ -95,6 +96,11 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject user = obj.getJSONObject("data");
 
                             String nama = user.getString("nama");
+                            String id_warga = user.getString("id");
+
+                            // SIMPAN id_warga KE SHAREDPREFERENCES
+                            SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+                            prefs.edit().putString("id", id_warga).apply();
 
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
 

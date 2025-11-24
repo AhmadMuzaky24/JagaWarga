@@ -15,10 +15,11 @@ import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    // properti (konsep PBO: simpan state objek di dalam class)
+    // properti
     private LinearLayout menuAbsen;
     private LinearLayout menuTukar;
     private LinearLayout menuLapor;
+    private LinearLayout menuJadwal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +40,16 @@ public class DashboardActivity extends AppCompatActivity {
         // inisialisasi view
         menuAbsen = findViewById(R.id.menuAbsen);
         menuTukar = findViewById(R.id.menuTukar);     // pastikan ada di XML
-        menuLapor = findViewById(R.id.menuLapor);     // pastikan ada di XML
+        menuLapor = findViewById(R.id.menuLapor);
+        menuJadwal = findViewById(R.id.menuJadwal);// pastikan ada di XML
 
-        // atur navigasi tiap menu (tetap PBO: pakai 1 method reusable)
+        // atur navigasi tiap menu
         setupMenuNavigation(menuAbsen, AbsenRondaActivity.class);
         setupMenuNavigation(menuTukar, TukarJadwalActivity.class);
         setupMenuNavigation(menuLapor, LaporanKeamananActivity.class);
+        setupMenuNavigation(menuJadwal, JadwalRondaActivity.class);
     }
 
-    /**
-     * Method bantu untuk memasang onClick ke LinearLayout menu,
-     * supaya tidak copy–paste kode yang sama berkali-kali.
-     */
     private void setupMenuNavigation(LinearLayout menuView, final Class<?> targetActivity) {
         if (menuView == null) return; // jaga-jaga kalau id belum dibuat
 
