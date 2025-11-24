@@ -29,7 +29,6 @@
 
         <activity
             android:name=".DashboardActivity">
-
         </activity>
 
         <activity
@@ -52,7 +51,9 @@
             android:name=".LaporanKeamananActivity">
         </activity>
 
-
+        <activity
+            android:name=".DashboardRtActivity">
+        </activity>
 
     </application>
 

@@ -14,16 +14,18 @@ import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    // ===== Properti menu utama =====
+    // ===== Menu utama =====
     private LinearLayout menuAbsen;
     private LinearLayout menuTukar;
     private LinearLayout menuLapor;
     private LinearLayout menuJadwal;
 
-    // ===== Properti contact & pengumuman =====
-    private TextView tvContactNumber;
+    // ===== Card kontak =====
+    private LinearLayout tvContactNumber;
+    private TextView tvContactNumberText;
     private TextView tvContactLocation;
 
+    // ===== Pengumuman =====
     private TextView tvAnnouncement1Text, tvAnnouncement1Time;
     private TextView tvAnnouncement2Text, tvAnnouncement2Time;
     private TextView tvAnnouncement3Text, tvAnnouncement3Time;
@@ -42,37 +44,38 @@ public class DashboardActivity extends AppCompatActivity {
         tvGreeting.setText("Hai, " + namaUser + " !");
 
         // ===== Set tanggal hari ini =====
-        TextView tanggal_current = findViewById(R.id.tanggal_current);
+        TextView tanggalCurrent = findViewById(R.id.tanggal_current);
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
+        SimpleDateFormat sdf =
+                new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
         String tanggal = sdf.format(calendar.getTime());
-        tanggal_current.setText(tanggal);
+        tanggalCurrent.setText(tanggal);
 
-        // ===== Inisialisasi view menu =====
-        menuAbsen = findViewById(R.id.menuAbsen);
-        menuTukar = findViewById(R.id.menuTukar);
-        menuLapor = findViewById(R.id.menuLapor);
+        // ===== Init & navigasi menu =====
+        menuAbsen  = findViewById(R.id.menuAbsen);
+        menuTukar  = findViewById(R.id.menuTukar);
+        menuLapor  = findViewById(R.id.menuLapor);
         menuJadwal = findViewById(R.id.menuJadwal);
 
-        // ===== Navigasi menu (PBO style, reusable) =====
-        setupMenuNavigation(menuAbsen, AbsenRondaActivity.class);
-        setupMenuNavigation(menuTukar, TukarJadwalActivity.class);
-        setupMenuNavigation(menuLapor, LaporanKeamananActivity.class);
+        setupMenuNavigation(menuAbsen,  AbsenRondaActivity.class);
+        setupMenuNavigation(menuTukar,  TukarJadwalActivity.class);
+        setupMenuNavigation(menuLapor,  LaporanKeamananActivity.class);
         setupMenuNavigation(menuJadwal, JadwalRondaActivity.class);
 
-        // ===== Inisialisasi contact card =====
-        tvContactNumber = findViewById(R.id.tvContactNumber);
+        // ===== Card kontak =====
+        tvContactNumber     = findViewById(R.id.tvContactNumber);
+        tvContactNumberText = findViewById(R.id.tvContactNumberText);
+        tvContactLocation   = findViewById(R.id.tvContactLocation);
         tvContactLocation = findViewById(R.id.tvContactLocation);
 
+        // isi default (bisa di-update dari API nanti)
         setupContactCard("0813-2424-2626", "RT 01 / Pos 01 (Utara)");
 
-        // ===== Inisialisasi announcement views =====
+        // ===== Pengumuman =====
         tvAnnouncement1Text = findViewById(R.id.tvAnnouncement1Text);
         tvAnnouncement1Time = findViewById(R.id.tvAnnouncement1Time);
-
         tvAnnouncement2Text = findViewById(R.id.tvAnnouncement2Text);
         tvAnnouncement2Time = findViewById(R.id.tvAnnouncement2Time);
-
         tvAnnouncement3Text = findViewById(R.id.tvAnnouncement3Text);
         tvAnnouncement3Time = findViewById(R.id.tvAnnouncement3Time);
 
@@ -80,16 +83,18 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     // =======================
-    //  PBO: fungsi reusable
+    //   FUNGSI PBO REUSABLE
     // =======================
 
-    private void setupMenuNavigation(LinearLayout menuView, final Class<?> targetActivity) {
+    private void setupMenuNavigation(LinearLayout menuView,
+                                     final Class<?> targetActivity) {
         if (menuView == null) return;
 
         menuView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, targetActivity);
+                Intent intent =
+                        new Intent(DashboardActivity.this, targetActivity);
                 startActivity(intent);
             }
         });
@@ -98,16 +103,17 @@ public class DashboardActivity extends AppCompatActivity {
     // Atur isi card kontak dalam satu fungsi
     private void setupContactCard(String phoneNumber, String location) {
         if (tvContactNumber != null) {
-            tvContactNumber.setText(phoneNumber);
+            tvContactNumberText.setText(phoneNumber);
+            tvContactLocation.setText(location);
         }
         if (tvContactLocation != null) {
             tvContactLocation.setText(location);
         }
-        // Kalau nanti mau tambah logika klik ke WhatsApp/Telepon,
-        // tinggal tambahkan 1 fungsi lagi di sini (reusable).
+        // nanti kalau mau tambah klik ke WhatsApp/Telepon,
+        // tinggal tambah 1 fungsi lagi di sini.
     }
 
-    // Kelas kecil untuk mewakili 1 pengumuman
+    // Representasi 1 pengumuman
     private static class Announcement {
         final String text;
         final String time;
@@ -131,8 +137,10 @@ public class DashboardActivity extends AppCompatActivity {
         bindAnnouncement(tvAnnouncement3Text, tvAnnouncement3Time, data[2]);
     }
 
-    // Fungsi reusable untuk meng-bind 1 item pengumuman
-    private void bindAnnouncement(TextView tvText, TextView tvTime, Announcement announcement) {
+    // Bind 1 item pengumuman
+    private void bindAnnouncement(TextView tvText,
+                                  TextView tvTime,
+                                  Announcement announcement) {
         if (announcement == null) return;
         if (tvText != null) tvText.setText(announcement.text);
         if (tvTime != null) tvTime.setText(announcement.time);
