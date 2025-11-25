@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         String telepon = binding.inputPhone.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        String url = "https://intl-edited-sticker-jam.trycloudflare.com/jagawarga/login.php";
+        String url = "https://examples-underwear-clarke-yang.trycloudflare.com/jagawarga/login.php";
 
         Log.d("DEBUG_LOGIN", "Mengirim request ke: " + url);
 
@@ -93,29 +93,47 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject obj = new JSONObject(response);
 
                         if (obj.getBoolean("success")) {
+
                             JSONObject user = obj.getJSONObject("data");
 
                             String nama = user.getString("nama");
-                            String id_warga = user.getString("id");
 
-                            // SIMPAN id_warga KE SHAREDPREFERENCES
+                            // id berupa INT → harus diambil dengan getInt()
+                            int idWargaInt = user.getInt("id");
+                            String id_warga = String.valueOf(idWargaInt);
+
+                            // id_rt berupa STRING → aman pakai getString
+                            String id_rt = user.getString("id_rt").trim();
+
+                            // CEGAH NULL
+                            if (id_rt.equals("null") || id_rt.isEmpty()) {
+                                Toast.makeText(this, "ID RT tidak valid dari server!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // SIMPAN ke SharedPreferences
                             SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
-                            prefs.edit().putString("id", id_warga).apply();
+                            prefs.edit()
+                                    .putString("id", id_warga)
+                                    .putString("id_rt", id_rt)
+                                    .apply();
 
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                             intent.putExtra("nama_user", nama);
                             startActivity(intent);
-                            finish(); // opsional: supaya user tidak kembali ke login setelah tekan back
+                            finish();
 
                         } else {
                             Toast.makeText(this, obj.getString("message"), Toast.LENGTH_LONG).show();
                         }
 
                     } catch (Exception e) {
-                        Toast.makeText(this, "Parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                        Toast.makeText(this, "Terjadi kesalahan parsing data.", Toast.LENGTH_LONG).show();
                     }
+
                 },
 
                 error -> {

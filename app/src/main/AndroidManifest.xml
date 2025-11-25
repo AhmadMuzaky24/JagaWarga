@@ -52,6 +52,10 @@
             android:name=".LaporanKeamananActivity">
         </activity>
 
+        <activity
+            android:name=".uji_coba_generate_jadwal">
+        </activity>
+
 
 
     </application>

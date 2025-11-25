@@ -197,6 +197,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Ahmad Muzaky"
@@ -204,6 +205,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720421"
@@ -212,6 +214,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -238,6 +241,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -245,6 +249,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -253,6 +258,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -277,6 +283,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -284,6 +291,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -292,6 +300,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -316,6 +325,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -323,6 +333,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -331,6 +342,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -355,6 +367,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -362,6 +375,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -370,6 +384,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -394,6 +409,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -401,6 +417,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -409,6 +426,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -433,6 +451,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -440,6 +459,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -448,6 +468,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -472,6 +493,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -479,6 +501,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -487,6 +510,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -511,6 +535,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -518,6 +543,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -526,6 +552,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -550,6 +577,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama11"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -557,6 +585,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal11"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -565,6 +594,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam11"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"
@@ -589,6 +619,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/textNama12"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Iqbal Febrian"
@@ -596,6 +627,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textIdJadwal12"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Jadwal: 720422"
@@ -604,6 +636,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/textJam12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="19:00 - 5:00"

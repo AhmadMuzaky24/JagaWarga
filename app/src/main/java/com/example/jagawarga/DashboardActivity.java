@@ -1,140 +1,160 @@
 package com.example.jagawarga;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    // ===== Properti menu utama =====
-    private LinearLayout menuAbsen;
-    private LinearLayout menuTukar;
-    private LinearLayout menuLapor;
-    private LinearLayout menuJadwal;
+    // UI Components
+    private LinearLayout menuAbsen, menuTukar, menuLapor, menuJadwal;
+    private Button btnToGenerate;
+    private TextView tvGreeting, tanggalCurrent;
 
-    // ===== Properti contact & pengumuman =====
-    private TextView tvContactNumber;
-    private TextView tvContactLocation;
+    // User Data
+    private String idWarga, idRt, namaUser;
 
-    private TextView tvAnnouncement1Text, tvAnnouncement1Time;
-    private TextView tvAnnouncement2Text, tvAnnouncement2Time;
-    private TextView tvAnnouncement3Text, tvAnnouncement3Time;
+    // API Endpoint (Cloudflared)
+    private static final String BASE_URL = "https://examples-underwear-clarke-yang.trycloudflare.com/jagawarga/";
+    // Ganti dengan URL kamu sendiri
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // ===== Greeting nama user =====
-        String namaUser = getIntent().getStringExtra("nama_user");
-        TextView tvGreeting = findViewById(R.id.tvGreeting);
-        if (namaUser == null || namaUser.trim().isEmpty()) {
-            namaUser = "User";
-        }
-        tvGreeting.setText("Hai, " + namaUser + " !");
+        // --- LOAD USER DATA DARI PREF ---
+        loadUserData();
 
-        // ===== Set tanggal hari ini =====
-        TextView tanggal_current = findViewById(R.id.tanggal_current);
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
-        String tanggal = sdf.format(calendar.getTime());
-        tanggal_current.setText(tanggal);
+        // --- INIT UI ---
+        initViews();
+        setTodayDate();
+        setGreeting();
 
-        // ===== Inisialisasi view menu =====
-        menuAbsen = findViewById(R.id.menuAbsen);
-        menuTukar = findViewById(R.id.menuTukar);
-        menuLapor = findViewById(R.id.menuLapor);
-        menuJadwal = findViewById(R.id.menuJadwal);
+        // --- BUTTON SPECIAL ---
+        btnToGenerate.setOnClickListener(v -> {
+            Intent i = new Intent(DashboardActivity.this, uji_coba_generate_jadwal.class);
+            startActivity(i);
+        });
 
-        // ===== Navigasi menu (PBO style, reusable) =====
+        // --- SETUP MENU NAVIGATION ---
         setupMenuNavigation(menuAbsen, AbsenRondaActivity.class);
         setupMenuNavigation(menuTukar, TukarJadwalActivity.class);
         setupMenuNavigation(menuLapor, LaporanKeamananActivity.class);
         setupMenuNavigation(menuJadwal, JadwalRondaActivity.class);
-
-        // ===== Inisialisasi contact card =====
-        tvContactNumber = findViewById(R.id.tvContactNumber);
-        tvContactLocation = findViewById(R.id.tvContactLocation);
-
-        setupContactCard("0813-2424-2626", "RT 01 / Pos 01 (Utara)");
-
-        // ===== Inisialisasi announcement views =====
-        tvAnnouncement1Text = findViewById(R.id.tvAnnouncement1Text);
-        tvAnnouncement1Time = findViewById(R.id.tvAnnouncement1Time);
-
-        tvAnnouncement2Text = findViewById(R.id.tvAnnouncement2Text);
-        tvAnnouncement2Time = findViewById(R.id.tvAnnouncement2Time);
-
-        tvAnnouncement3Text = findViewById(R.id.tvAnnouncement3Text);
-        tvAnnouncement3Time = findViewById(R.id.tvAnnouncement3Time);
-
-        setupAnnouncements();
     }
 
-    // =======================
-    //  PBO: fungsi reusable
-    // =======================
+    // ======================================================
+    // ===============    USER DATA LOADING   ===============
+    // ======================================================
 
-    private void setupMenuNavigation(LinearLayout menuView, final Class<?> targetActivity) {
-        if (menuView == null) return;
+    private void loadUserData() {
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
 
-        menuView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, targetActivity);
-                startActivity(intent);
-            }
+        idWarga   = prefs.getString("id", null);
+        idRt      = prefs.getString("id_rt", null);
+        namaUser  = prefs.getString("nama", "Pengguna");
+
+        // validasi minimal
+        if (idWarga == null || idRt == null) {
+            Toast.makeText(this, "Data login tidak ditemukan!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // ======================================================
+    // ===============        INIT VIEW        ===============
+    // ======================================================
+
+    private void initViews() {
+        menuAbsen   = findViewById(R.id.menuAbsen);
+        menuTukar   = findViewById(R.id.menuTukar);
+        menuLapor   = findViewById(R.id.menuLapor);
+        menuJadwal  = findViewById(R.id.menuJadwal);
+
+        tvGreeting       = findViewById(R.id.tvGreeting);
+        tanggalCurrent   = findViewById(R.id.tanggal_current);
+        btnToGenerate    = findViewById(R.id.btnToGenerate);
+    }
+
+    private void setGreeting() {
+        tvGreeting.setText("Hai, " + namaUser + " !");
+    }
+
+    private void setTodayDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
+        String today = sdf.format(cal.getTime());
+        tanggalCurrent.setText(today);
+    }
+
+    // ======================================================
+    // ===============         NAVIGATION     ===============
+    // ======================================================
+
+    private void setupMenuNavigation(LinearLayout menu, Class<?> targetActivity) {
+        if (menu == null) return;
+        menu.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, targetActivity);
+            // Kirim data global juga kalau perlu:
+            intent.putExtra("id_rt", idRt);
+            intent.putExtra("id_warga", idWarga);
+            intent.putExtra("nama", namaUser);
+            startActivity(intent);
         });
+
+        menuJadwal.setOnClickListener(v -> {
+            String todayForApi = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    .format(Calendar.getInstance().getTime());
+
+            callApiCloudflare(idRt, todayForApi);
+        });
+
     }
 
-    // Atur isi card kontak dalam satu fungsi
-    private void setupContactCard(String phoneNumber, String location) {
-        if (tvContactNumber != null) {
-            tvContactNumber.setText(phoneNumber);
-        }
-        if (tvContactLocation != null) {
-            tvContactLocation.setText(location);
-        }
-        // Kalau nanti mau tambah logika klik ke WhatsApp/Telepon,
-        // tinggal tambahkan 1 fungsi lagi di sini (reusable).
-    }
+    // ======================================================
+    // ===============        API CALLING     ===============
+    // ======================================================
 
-    // Kelas kecil untuk mewakili 1 pengumuman
-    private static class Announcement {
-        final String text;
-        final String time;
+    // Ready-to-use helper jika kamu mau panggil API Cloudflared kemudian:
+    public void callApiCloudflare(String id_rt, String tanggal) {
+        String url = BASE_URL + "get_jadwal.php?id_rt=" + id_rt + "&tanggal=" + tanggal;
 
-        Announcement(String text, String time) {
-            this.text = text;
-            this.time = time;
-        }
-    }
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-    // Set maksimal 3 pengumuman
-    private void setupAnnouncements() {
-        Announcement[] data = new Announcement[]{
-                new Announcement("Orang mencurigakan di RT 03", "10 m lalu"),
-                new Announcement("Pencurian semen di RT 01", "Kemarin"),
-                new Announcement("Pengumuman kalender ronda RT 02", "1 bln lalu")
-        };
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    Log.d("API_RESPONSE", response.toString());
 
-        bindAnnouncement(tvAnnouncement1Text, tvAnnouncement1Time, data[0]);
-        bindAnnouncement(tvAnnouncement2Text, tvAnnouncement2Time, data[1]);
-        bindAnnouncement(tvAnnouncement3Text, tvAnnouncement3Time, data[2]);
-    }
+                    // === PINDAH KE ACTIVITY ===
+                    Intent i = new Intent(DashboardActivity.this, JadwalRondaActivity.class);
 
-    // Fungsi reusable untuk meng-bind 1 item pengumuman
-    private void bindAnnouncement(TextView tvText, TextView tvTime, Announcement announcement) {
-        if (announcement == null) return;
-        if (tvText != null) tvText.setText(announcement.text);
-        if (tvTime != null) tvTime.setText(announcement.time);
+                    // kirim JSON ke activity
+                    i.putExtra("json_jadwal", response.toString());
+                    startActivity(i);
+                },
+                error -> {
+                    Toast.makeText(this, "Gagal menghubungi server", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                });
+
+        queue.add(req);
     }
 }
