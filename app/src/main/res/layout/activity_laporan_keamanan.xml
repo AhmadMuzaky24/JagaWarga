@@ -148,16 +148,16 @@
             android:id="@+id/btnUploadLaporanKeamanan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="148dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:text="Upload Laporan"
             android:textColor="@android:color/white"
-            android:textSize="15sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

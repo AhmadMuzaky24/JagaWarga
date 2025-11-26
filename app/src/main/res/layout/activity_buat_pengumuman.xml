@@ -12,10 +12,29 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
+        <EditText
+            android:id="@+id/inputPengumuman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|start"
+            android:hint="Tulis pengumuman di sini..."
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="3"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelPengumuman" />
+
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="44dp"
             android:background="@drawable/bg_back_button_blue"
             android:contentDescription="Kembali"
             android:padding="10dp"
@@ -25,25 +44,11 @@
             app:srcCompat="@drawable/ic_back_arrow"
             app:tint="@android:color/white" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Buat Pengumuman"
-            android:textColor="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/imgIllustration"
             android:layout_width="311dp"
             android:layout_height="311dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="56dp"
             android:adjustViewBounds="true"
             android:contentDescription="Ilustrasi Pengumuman"
             android:scaleType="fitCenter"
@@ -58,7 +63,7 @@
             android:id="@+id/labelRt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="RT"
             android:textColor="@color/blue"
             android:textSize="14sp"
@@ -74,6 +79,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labelRt" />
 
@@ -88,22 +94,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinnerRtPengumuman" />
 
-        <EditText
-            android:id="@+id/inputPengumuman"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edittext_background"
-            android:gravity="top|start"
-            android:hint="Tulis pengumuman di sini..."
-            android:inputType="textMultiLine|textCapSentences"
-            android:minLines="3"
-            android:padding="12dp"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:layout_marginTop="52dp"
+            android:text="Buat Pengumuman"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelPengumuman" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnSubmit"

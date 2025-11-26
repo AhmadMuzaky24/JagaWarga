@@ -67,7 +67,7 @@
             android:backgroundTint="@color/blue"
             android:text="Kembali"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
