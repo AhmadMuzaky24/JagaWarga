@@ -32,7 +32,7 @@
             android:id="@+id/tvTitleValidasi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="Permintaan Absensi\nSedang Divalidasi"
             android:textColor="@color/blue"
