@@ -127,7 +127,6 @@
                     android:textColor="@android:color/white"
                     android:textSize="12sp" />
 
-                <!-- CONTAINER PUTIH UNTUK LIST -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,133 +136,11 @@
                     app:cardElevation="0dp">
 
                     <LinearLayout
+                        android:id="@+id/containerList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
-
-                        <!-- LIST ITEM 1 (REGISTER) -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_list_item_gray"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="12dp">
-
-                            <!-- Nama & Info -->
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ahmad Muzaky"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="No Telp: 081291760656"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <!-- Tombol Aksi -->
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.widget.Button
-                                    android:id="@+id/btnValidateReg1"
-                                    android:layout_width="80dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:background="@drawable/bg_button_validate"
-                                    android:text="Validasi"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/black"
-                                    android:textSize="11sp" />
-
-                                <android.widget.Button
-                                    android:id="@+id/btnRejectReg1"
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:background="@drawable/bg_button_reject"
-                                    android:text="X"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <!-- LIST ITEM 2 (REGISTER) -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:background="@drawable/bg_list_item_gray"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="12dp">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Muhammad Iqbal F."
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="No Telp: 081291760656"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.widget.Button
-                                    android:id="@+id/btnValidateReg2"
-                                    android:layout_width="80dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:background="@drawable/bg_button_validate"
-                                    android:text="Validasi"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/black"
-                                    android:textSize="11sp" />
-
-                                <android.widget.Button
-                                    android:id="@+id/btnRejectReg2"
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:background="@drawable/bg_button_reject"
-                                    android:text="X"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-                        </LinearLayout>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

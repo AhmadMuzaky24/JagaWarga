@@ -1,7 +1,9 @@
 package com.example.jagawarga;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -9,18 +11,25 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class DashboardRtActivity extends AppCompatActivity {
 
     // Menu utama
     private LinearLayout menuTerimaLaporan;
-    private LinearLayout menuBuatPengumuman;
     private LinearLayout menuListPermintaan;
 
-    // Tombol generate
+    // Tombol generate (sesuai layout XML, ini adalah TextView yang dibungkus CardView/Layout)
     private TextView btnGenerateJadwal;
 
     @Override
@@ -29,10 +38,9 @@ public class DashboardRtActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_rt);
 
         // ====== 1. Greeting nama RT ======
-        // Mengambil data yang dikirim dari LoginActivity
         String namaRt = getIntent().getStringExtra("nama_user");
         if (namaRt == null || namaRt.trim().isEmpty()) {
-            namaRt = "Pak RT"; // Default jika data kosong
+            namaRt = "Pak RT";
         }
 
         TextView tvGreetingRt = findViewById(R.id.tvGreetingRt);
@@ -47,42 +55,80 @@ public class DashboardRtActivity extends AppCompatActivity {
 
         // ====== 3. Inisialisasi menu ======
         menuTerimaLaporan   = findViewById(R.id.menuTerimaLaporan);
-        menuBuatPengumuman  = findViewById(R.id.menuBuatPengumuman);
         menuListPermintaan  = findViewById(R.id.menuListPermintaan);
         btnGenerateJadwal   = findViewById(R.id.btnGenerateJadwal);
 
         // ====== 4. Setup Listener (Navigasi) ======
 
-        // Menu: Terima Laporan
         menuTerimaLaporan.setOnClickListener(v -> {
             Toast.makeText(DashboardRtActivity.this, "Fitur Terima Laporan akan segera hadir!", Toast.LENGTH_SHORT).show();
-            // Nanti jika sudah ada Activity-nya, ganti dengan:
-            // startActivity(new Intent(this, TerimaLaporanActivity.class));
         });
 
-        // Menu: Buat Pengumuman
-        menuBuatPengumuman.setOnClickListener(v -> {
-            // Layout 'activity_buat_pengumuman.xml' sudah ada, tapi Java-nya belum.
-            // Nanti buat file 'BuatPengumumanActivity.java' lalu uncomment baris ini:
-            // startActivity(new Intent(this, BuatPengumumanActivity.class));
-            Toast.makeText(DashboardRtActivity.this, "Fitur Buat Pengumuman akan segera hadir!", Toast.LENGTH_SHORT).show();
-        });
-
-        // Menu: List Permintaan (Validasi Warga/Absen)
         menuListPermintaan.setOnClickListener(v -> {
-            // Layout 'activity_list_permintaan_register.xml' sudah ada.
-            // Nanti buat file 'ListPermintaanActivity.java' lalu uncomment baris ini:
-            // startActivity(new Intent(this, ListPermintaanActivity.class));
-            Toast.makeText(DashboardRtActivity.this, "Fitur List Permintaan akan segera hadir!", Toast.LENGTH_SHORT).show();
+            // Mengarahkan ke ListPermintaan (activity_list_permintaan_register.xml)
+            // Pastikan kamu sudah punya Activity Java-nya, jika belum buatlah ListPermintaanActivity
+            startActivity(new Intent(this, ListPermintaanActivity.class));
         });
 
-        // Tombol: Generate Jadwal
-        // Mengarah ke file uji_coba_generate_jadwal yang SUDAH ADA
+        // ====== 5. LOGIC GENERATE JADWAL (UPDATE) ======
         if (btnGenerateJadwal != null) {
             btnGenerateJadwal.setOnClickListener(v -> {
-                Intent intent = new Intent(DashboardRtActivity.this, uji_coba_generate_jadwal.class);
-                startActivity(intent);
+
+                // Ambil ID RT dari Shared Preference (Login Session)
+                String idRt = PrefUtils.getIdRt(DashboardRtActivity.this);
+
+                if (idRt != null) {
+                    // Panggil fungsi generate
+                    generateJadwal(idRt);
+                } else {
+                    Toast.makeText(DashboardRtActivity.this, "ID RT tidak ditemukan, silakan login ulang.", Toast.LENGTH_SHORT).show();
+                }
             });
         }
+    }
+
+    // --- METHOD GENERATE JADWAL (Pindahan dari uji_coba) ---
+    private void generateJadwal(String id_rt) {
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/generate_jadwal.php";
+
+        ProgressDialog loading = new ProgressDialog(this);
+        loading.setMessage("Sedang menyusun jadwal...");
+        loading.show();
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    loading.dismiss();
+                    Log.d("API_GENERATE", "Raw Response: " + response);
+
+                    try {
+                        JSONObject json = new JSONObject(response);
+
+                        // Tampilkan pesan sukses dari server
+                        String message = json.optString("message", "Jadwal berhasil digenerate");
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+                        // Opsional: Jika ingin langsung melihat hasilnya, bisa diarahkan ke halaman Jadwal
+                        // Intent intent = new Intent(DashboardRtActivity.this, JadwalRondaActivity.class);
+                        // startActivity(intent);
+
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                },
+                error -> {
+                    loading.dismiss();
+                    Toast.makeText(this, "Gagal terhubung ke server", Toast.LENGTH_LONG).show();
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                // Mengirim parameter id_rt ke PHP
+                params.put("id_rt", id_rt);
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(request);
     }
 }
