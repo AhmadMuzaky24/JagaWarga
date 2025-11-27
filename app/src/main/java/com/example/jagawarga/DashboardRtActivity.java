@@ -64,7 +64,7 @@ public class DashboardRtActivity extends AppCompatActivity {
         // ====== 4. Setup Listener (Navigasi) ======
 
         menuTerimaLaporan.setOnClickListener(v -> {
-            Toast.makeText(DashboardRtActivity.this, "Fitur Terima Laporan akan segera hadir!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(DashboardRtActivity.this, TerimaLaporanActivity.class));
         });
 
         menuBuatPengumuman.setOnClickListener(v -> {

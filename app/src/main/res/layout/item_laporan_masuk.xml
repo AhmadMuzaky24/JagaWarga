@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgIconLaporan"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/icon_laporan"
+            android:background="@drawable/bg_profile_circle"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvJenisLaporan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Pencurian"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+
+            app:layout_constraintStart_toEndOf="@id/imgIconLaporan"
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toTopOf="@id/imgIconLaporan" />
+
+        <TextView
+            android:id="@+id/tvNamaPelapor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Oleh: Ahmad Muzaky"
+            android:textSize="12sp"
+            android:textColor="#757575"
+            app:layout_constraintStart_toStartOf="@id/tvJenisLaporan"
+            app:layout_constraintTop_toBottomOf="@id/tvJenisLaporan" />
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/imgIconLaporan" />
+
+        <TextView
+            android:id="@+id/tvDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Ada orang mencurigakan di depan pos kamling..."
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="14sp"
+            android:textColor="#424242"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <TextView
+            android:id="@+id/tvWaktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="12 Nov, 14:30"
+            android:textSize="11sp"
+            android:textColor="#9E9E9E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDeskripsi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

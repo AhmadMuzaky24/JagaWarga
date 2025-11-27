@@ -79,6 +79,11 @@
             android:name=".BuatPengumumanActivity">
         </activity>
 
+        <activity
+            android:name=".TerimaLaporanActivity">
+        </activity>
+
+
 
 
     </application>
