@@ -75,6 +75,10 @@
             android:name=".uji_coba_generate_jadwal">
         </activity>
 
+        <activity
+            android:name=".BuatPengumumanActivity">
+        </activity>
+
 
 
     </application>

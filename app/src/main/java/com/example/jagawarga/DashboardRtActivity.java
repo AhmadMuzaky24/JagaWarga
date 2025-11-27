@@ -29,6 +29,8 @@ public class DashboardRtActivity extends AppCompatActivity {
     private LinearLayout menuTerimaLaporan;
     private LinearLayout menuListPermintaan;
 
+    private LinearLayout menuBuatPengumuman;
+
     // Tombol generate (sesuai layout XML, ini adalah TextView yang dibungkus CardView/Layout)
     private TextView btnGenerateJadwal;
 
@@ -56,12 +58,19 @@ public class DashboardRtActivity extends AppCompatActivity {
         // ====== 3. Inisialisasi menu ======
         menuTerimaLaporan   = findViewById(R.id.menuTerimaLaporan);
         menuListPermintaan  = findViewById(R.id.menuListPermintaan);
+        menuBuatPengumuman  = findViewById(R.id.menuBuatPengumuman);
         btnGenerateJadwal   = findViewById(R.id.btnGenerateJadwal);
 
         // ====== 4. Setup Listener (Navigasi) ======
 
         menuTerimaLaporan.setOnClickListener(v -> {
             Toast.makeText(DashboardRtActivity.this, "Fitur Terima Laporan akan segera hadir!", Toast.LENGTH_SHORT).show();
+        });
+
+        menuBuatPengumuman.setOnClickListener(v -> {
+            // Arahkan ke halaman Buat Pengumuman
+            Intent intent = new Intent(DashboardRtActivity.this, BuatPengumumanActivity.class);
+            startActivity(intent);
         });
 
         menuListPermintaan.setOnClickListener(v -> {

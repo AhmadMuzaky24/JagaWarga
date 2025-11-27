@@ -417,100 +417,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvPengumuman"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        android:padding="16dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
 
-                        <!-- Announcement 1 -->
-                        <LinearLayout
-                            android:id="@+id/layoutAnnouncement1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_announcement_item"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement1Text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Orang mencurigakan di RT 03"
-                                android:textColor="@android:color/black"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement1Time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="10 m lalu"
-                                android:textColor="#808080"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Announcement 2 -->
-                        <LinearLayout
-                            android:id="@+id/layoutAnnouncement2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/bg_announcement_item"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement2Text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Pencurian semen di RT 01"
-                                android:textColor="@android:color/black"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement2Time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kemarin"
-                                android:textColor="#808080"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <!-- Announcement 3 -->
-                        <LinearLayout
-                            android:id="@+id/layoutAnnouncement3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/bg_announcement_item"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement3Text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Pencurian Kalender RT 02"
-                                android:textColor="@android:color/black"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/tvAnnouncement3Time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1 bln lalu"
-                                android:textColor="#808080"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
+                        xmlns:tools="http://schemas.android.com/tools"
+                        tools:listitem="@layout/item_pengumuman"
+                        tools:itemCount="2" />
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
