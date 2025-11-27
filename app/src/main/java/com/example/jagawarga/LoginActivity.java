@@ -204,7 +204,11 @@ public class LoginActivity extends AppCompatActivity {
                             String id_rt = user.getString("id_rt");
 
                             SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
-                            prefs.edit().putString("id", id_warga).putString("id_rt", id_rt).apply();
+                            prefs.edit()
+                                    .putString("id", id_warga)
+                                    .putString("id_rt", id_rt)
+                                    .putString("nama", nama)  // <--- TAMBAHKAN BARIS INI
+                                    .apply();
 
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
