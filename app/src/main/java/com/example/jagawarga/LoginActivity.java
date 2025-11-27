@@ -33,26 +33,18 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Container Views
     private ViewGroup mainContainer;
     private LinearLayout layoutLogin, layoutRegister;
-
-    // Tab Buttons
     private Button btnMasukTab, btnDaftarTab;
-
-    // Login Fields
     private EditText inputPhoneLogin, inputPasswordLogin;
     private ImageView btnTogglePassLogin;
     private Button btnLogin;
     private TextView textForgot;
-
-    // Register Fields
     private EditText inputNamaReg, inputPhoneReg, inputPassReg;
     private Spinner inputRtReg;
     private ImageView btnTogglePassReg;
     private Button btnRegisterAction;
 
-    // State
     private boolean isLoginPassVisible = false;
     private boolean isRegPassVisible = false;
 
@@ -61,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Cek apakah user sudah login sebelumnya (Auto Login)
+        // --- MATIKAN INI SAAT TESTING AGAR TIDAK LANGSUNG MASUK DASHBOARD ---
         // checkSession();
 
         initViews();
@@ -71,13 +63,16 @@ public class LoginActivity extends AppCompatActivity {
         setupActionButtons();
     }
 
+    // Cek apakah user masih login (Auto Login)
     private void checkSession() {
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         String savedId = prefs.getString("id", null);
-        String savedRole = prefs.getString("role", "Warga");
+        String savedRole = prefs.getString("role", null);
+        String savedNama = prefs.getString("nama", "User");
 
-        if (savedId != null) {
-            redirectDashboard(savedRole, prefs.getString("nama", "User"));
+        if (savedId != null && savedRole != null) {
+            Log.d("SESSION", "User found: " + savedNama + " Role: " + savedRole);
+            redirectDashboard(savedRole, savedNama);
         }
     }
 
@@ -85,16 +80,13 @@ public class LoginActivity extends AppCompatActivity {
         mainContainer = findViewById(R.id.mainContainer);
         layoutLogin = findViewById(R.id.layoutLogin);
         layoutRegister = findViewById(R.id.layoutRegister);
-
         btnMasukTab = findViewById(R.id.btnMasukTab);
         btnDaftarTab = findViewById(R.id.btnDaftarTab);
-
         inputPhoneLogin = findViewById(R.id.inputPhoneLogin);
         inputPasswordLogin = findViewById(R.id.inputPasswordLogin);
         btnTogglePassLogin = findViewById(R.id.btnTogglePassLogin);
         btnLogin = findViewById(R.id.btnLogin);
         textForgot = findViewById(R.id.textForgot);
-
         inputNamaReg = findViewById(R.id.inputNamaReg);
         inputPhoneReg = findViewById(R.id.inputPhoneReg);
         inputRtReg = findViewById(R.id.inputRtReg);
@@ -180,59 +172,55 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // --- LOGIC LOGIN UTAMA YANG DIPERBAIKI ---
+    // --- LOGIC LOGIN UTAMA ---
     private void performLogin(String telepon, String password) {
-        // Pastikan URL ini benar sesuai Cloudflare Tunnel kamu
+        // UPDATE URL INI SESUAI TUNNEL TERBARU KAMU
         String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Log.d("API_LOGIN", "Response Raw: " + response);
+                    Log.d("API_LOGIN", "Response: " + response);
 
                     try {
                         JSONObject obj = new JSONObject(response);
 
-                        // Periksa apakah field 'success' ada dan true
                         if (obj.has("success") && obj.getBoolean("success")) {
                             JSONObject user = obj.getJSONObject("data");
 
-                            // 1. Ambil Data dengan Aman (Gunakan optString agar tidak Crash)
-                            // Jika data null di JSON, dia akan pakai nilai default parameter kedua
+                            // Ambil data (Nama kolom JSON harus sama dengan di login.php)
+                            String idWarga = user.optString("id", "0");
                             String nama = user.optString("nama", "Warga");
-                            String id_warga = user.optString("id", "0");
-                            String id_rt = user.optString("id_rt", "0");
-                            String role = user.optString("role", "Warga");
-                            String telp = user.optString("telepon", "");
+                            String idRt = user.optString("id_rt", "0");
 
-                            // 2. Simpan ke SharedPreferences
+                            // Ambil Role (Harus 'Warga', 'KetuaRT', atau 'KetuaRW')
+                            String role = user.optString("role", "Warga");
+
+                            // Simpan ke SharedPreferences
                             SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
                             prefs.edit()
-                                    .putString("id", id_warga)
-                                    .putString("id_rt", id_rt)
+                                    .putString("id", idWarga)
+                                    .putString("id_rt", idRt)
                                     .putString("nama", nama)
                                     .putString("role", role)
-                                    .putString("telepon", telp)
                                     .apply();
 
-                            Toast.makeText(this, "Login Berhasil sebagai " + role, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Login Sukses: " + role, Toast.LENGTH_SHORT).show();
 
-                            // 3. Panggil fungsi redirect
+                            // Pindah halaman sesuai role
                             redirectDashboard(role, nama);
 
                         } else {
-                            // Jika login gagal (password salah dll)
                             String msg = obj.optString("message", "Login Gagal");
                             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("LOGIN_PARSE_ERROR", "Error: " + e.getMessage());
-                        Toast.makeText(this, "Format data dari server salah!", Toast.LENGTH_SHORT).show();
+                        Log.e("LOGIN_ERROR", "Parse Error: " + e.getMessage());
+                        Toast.makeText(this, "Error Format Data Server", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
-                    Log.e("LOGIN_NETWORK_ERROR", "Error: " + error.toString());
-                    Toast.makeText(this, "Gagal koneksi ke server", Toast.LENGTH_SHORT).show();
+                    Log.e("LOGIN_NETWORK", "Error: " + error.toString());
+                    Toast.makeText(this, "Gagal terhubung ke server", Toast.LENGTH_SHORT).show();
                 }
         ) {
             @Override
@@ -246,34 +234,33 @@ public class LoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    // Fungsi Terpisah untuk Mengatur Arah Dashboard
+    // --- LOGIC PEMBAGIAN DASHBOARD (ROLE CHECK) ---
     private void redirectDashboard(String role, String namaUser) {
         Intent intent;
 
-        // Normalisasi string role (antisipasi huruf besar/kecil dari database)
-        String roleLower = role.toLowerCase();
+        // Gunakan equalsIgnoreCase agar 'KetuaRT' sama dengan 'ketuart' (untuk jaga-jaga)
+        // Tapi karena DB kamu ENUM, isinya pasti presisi 'KetuaRT' atau 'KetuaRW'
 
-        if (roleLower.contains("KetuaRT")) {
-            // Role mengandung kata 'rt' (misal: "KetuaRT", "admin_rt", "RT")
+        if (role.equalsIgnoreCase("KetuaRT")) {
             intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
-        } else if (roleLower.contains("KetuaRW")) {
-            // Role mengandung kata 'rw'
+        } else if (role.equalsIgnoreCase("KetuaRW")) {
             intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
         } else {
-            // Default ke Warga
+            // Default untuk 'Warga' atau jika role kosong
             intent = new Intent(LoginActivity.this, DashboardActivity.class);
         }
 
-        // Kirim nama user (opsional, karena di Dashboard sudah ambil dari Prefs)
+        // Kirim nama user sebagai extra data
         intent.putExtra("nama_user", namaUser);
 
-        // Mulai Activity dan hapus LoginActivity dari stack (biar gak bisa di-back)
+        // Hapus activity login dari stack agar user tidak bisa tekan tombol back kembali ke login
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
 
     private void performRegister() {
+        // (Kode register sama seperti sebelumnya, tidak diubah)
         String nama = inputNamaReg.getText().toString();
         String telepon = inputPhoneReg.getText().toString();
         String id_rt = "";
@@ -292,12 +279,11 @@ public class LoginActivity extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Log.d("API_REG", response);
-                    Toast.makeText(this, "Permintaan registrasi dikirim!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Registrasi berhasil dikirim!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, PendingRegisterActivity.class);
                     startActivity(intent);
                 },
-                error -> Toast.makeText(this, "Gagal Daftar: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+                error -> Toast.makeText(this, "Gagal Daftar", Toast.LENGTH_SHORT).show()
         ){
             @Override
             protected Map<String, String> getParams() {
