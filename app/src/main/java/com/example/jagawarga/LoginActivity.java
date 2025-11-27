@@ -234,32 +234,26 @@ public class LoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    // GANTI method redirectDashboard yang lama dengan yang ini
+    // --- LOGIC PEMBAGIAN DASHBOARD (ROLE CHECK) ---
     private void redirectDashboard(String role, String namaUser) {
         Intent intent;
 
-        // 1. Bersihkan spasi di awal/akhir (PENTING!)
-        String cleanRole = (role != null) ? role.trim() : "";
+        // Gunakan equalsIgnoreCase agar 'KetuaRT' sama dengan 'ketuart' (untuk jaga-jaga)
+        // Tapi karena DB kamu ENUM, isinya pasti presisi 'KetuaRT' atau 'KetuaRW'
 
-        // 2. DEBUGGING: Tampilkan role yang terbaca di layar
-        // Jika muncul "Role: Warga" padahal harusnya RT, berarti masalah di PHP/Database
-        // Jika muncul "Role: KetuaRT " (ada spasi), trim() di atas akan memperbaikinya
-        Toast.makeText(this, "Debug Role: |" + cleanRole + "|", Toast.LENGTH_LONG).show();
-        Log.d("LOGIN_DEBUG", "Role asli: " + role + " | Role bersih: " + cleanRole);
-
-        // 3. Logika Pengecekan (Sesuai Database Persis)
-        if (cleanRole.equals("KetuaRT")) {
+        if (role.equalsIgnoreCase("KetuaRT")) {
             intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
-        } else if (cleanRole.equals("KetuaRW")) {
+        } else if (role.equalsIgnoreCase("KetuaRW")) {
             intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
         } else {
-            // Default ke Warga (Jika role 'Warga' atau tidak dikenali)
+            // Default untuk 'Warga' atau jika role kosong
             intent = new Intent(LoginActivity.this, DashboardActivity.class);
         }
 
+        // Kirim nama user sebagai extra data
         intent.putExtra("nama_user", namaUser);
 
-        // Hapus activity login dari stack (biar user gak bisa back ke login)
+        // Hapus activity login dari stack agar user tidak bisa tekan tombol back kembali ke login
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
