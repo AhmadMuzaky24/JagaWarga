@@ -2,15 +2,20 @@ package com.example.jagawarga;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log; // PENTING: Import ini sudah ada
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +25,7 @@ public class BuatPengumumanActivity extends AppCompatActivity {
     private Button btnSubmit;
     private ImageButton btnBack;
 
-    // Ganti URL dengan Cloudflare kamu
+    // Pastikan URL ini sesuai dengan yang kamu pakai sekarang
     private String URL_CREATE = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/create_pengumuman.php";
 
     @Override
@@ -63,6 +68,10 @@ public class BuatPengumumanActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, URL_CREATE,
                 response -> {
                     pd.dismiss();
+
+                    // === 1. DEBUG RESPONSE (Cek isi pesan server di Logcat) ===
+                    Log.e("DEBUG_PHP", "Raw Response dari Server: " + response);
+
                     try {
                         JSONObject obj = new JSONObject(response);
                         if (obj.getBoolean("success")) {
@@ -71,11 +80,42 @@ public class BuatPengumumanActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(this, "Gagal: " + obj.getString("message"), Toast.LENGTH_LONG).show();
                         }
-                    } catch (Exception e) { e.printStackTrace(); }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // Jika masuk sini, berarti server mengirim HTML (Error PHP), bukan JSON
+                        Log.e("JSON_ERROR", "Gagal parsing JSON. Cek Logcat 'DEBUG_PHP'.");
+                        Toast.makeText(this, "Terjadi kesalahan di server (Cek Logcat)", Toast.LENGTH_LONG).show();
+                    }
                 },
                 error -> {
                     pd.dismiss();
-                    Toast.makeText(this, "Gagal koneksi server", Toast.LENGTH_SHORT).show();
+
+                    String message = "Gagal koneksi server";
+
+                    // === 2. DEBUG ERROR 500 (Baca pesan error HTML dari PHP) ===
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        try {
+                            // Convert byte data ke String
+                            String errorData = new String(error.networkResponse.data, "UTF-8");
+
+                            // Log error mentah ke Logcat
+                            Log.e("VOLLEY_ERROR", "Server Error Body: " + errorData);
+
+                            // Coba ambil pesan JSON jika ada, kalau tidak pakai errorData mentah
+                            try {
+                                JSONObject errorJson = new JSONObject(errorData);
+                                message = errorJson.optString("message", errorData);
+                            } catch (Exception e) {
+                                // Jika gagal parsing JSON (berarti HTML), tampilkan sebagian teks
+                                message = "Error Server: Lihat Logcat";
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                 }
         ) {
             @Override
@@ -83,7 +123,7 @@ public class BuatPengumumanActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("judul", judul);
                 params.put("isi", isi);
-                params.put("id_rt", myIdRt); // ID RT dikirim otomatis
+                params.put("id_rt", myIdRt);
                 return params;
             }
         };
