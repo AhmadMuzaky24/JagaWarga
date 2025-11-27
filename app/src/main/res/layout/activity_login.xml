@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
+        <!-- BAGIAN STATIS (TIDAK AKAN BERGERAK) -->
         <ImageView
             android:id="@+id/logo"
             android:layout_width="70dp"
@@ -48,6 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
+        <!-- TAB BUTTONS -->
         <ImageView
             android:id="@+id/tabBackground"
             android:layout_width="0dp"
@@ -92,6 +94,7 @@
             app:layout_constraintStart_toEndOf="@+id/btnMasukTab"
             app:layout_constraintTop_toTopOf="@id/tabBackground" />
 
+        <!-- KONTAINER FORM LOGIN (DEFAULT MUNCUL) -->
         <LinearLayout
             android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
@@ -100,7 +103,6 @@
             android:orientation="vertical"
             android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/tabBackground">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -147,7 +149,6 @@
                     android:src="@drawable/icon_mata2" />
             </FrameLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,10 +185,12 @@
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/blue"
                 android:text="Masuk"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- KONTAINER FORM REGISTER (DEFAULT DISEMBUNYIKAN) -->
         <LinearLayout
             android:id="@+id/layoutRegister"
             android:layout_width="match_parent"
@@ -232,18 +235,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="RT (Contoh: 02)"
+                android:text="Pilih RT"
                 android:textSize="14sp" />
 
-            <EditText
+            <!-- UBAH EDIT TEXT JADI SPINNER DI SINI -->
+            <Spinner
                 android:id="@+id/inputRtReg"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"
-                android:inputType="number"
-                android:maxLength="2"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:spinnerMode="dropdown"/>
 
             <TextView
                 android:layout_width="match_parent"

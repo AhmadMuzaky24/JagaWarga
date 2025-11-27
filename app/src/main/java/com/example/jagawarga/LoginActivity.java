@@ -10,10 +10,12 @@ import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,29 +33,28 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Container Views
-    private ViewGroup mainContainer; // Root layout untuk animasi
+    // Container & Layouts
+    private ViewGroup mainContainer;
     private LinearLayout layoutLogin, layoutRegister;
 
     // Tab Buttons
     private Button btnMasukTab, btnDaftarTab;
 
-    // Login Fields
+    // Login Widgets
     private EditText inputPhoneLogin, inputPasswordLogin;
     private ImageView btnTogglePassLogin;
     private Button btnLogin;
+    private TextView textForgot;
 
-    // Register Fields
-    private EditText inputNamaReg, inputPhoneReg, inputRtReg, inputPassReg;
+    // Register Widgets
+    private EditText inputNamaReg, inputPhoneReg, inputPassReg;
+    private Spinner inputRtReg;
     private ImageView btnTogglePassReg;
     private Button btnRegisterAction;
 
-    // State
+    // State Variables
     private boolean isLoginPassVisible = false;
     private boolean isRegPassVisible = false;
-
-    // Lupa Passowrd
-    private TextView textForgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initViews();
+        setupSpinnerRt();
         setupTabs();
         setupPasswordToggles();
         setupActionButtons();
@@ -74,14 +76,12 @@ public class LoginActivity extends AppCompatActivity {
         btnMasukTab = findViewById(R.id.btnMasukTab);
         btnDaftarTab = findViewById(R.id.btnDaftarTab);
 
-        // Login UI
         inputPhoneLogin = findViewById(R.id.inputPhoneLogin);
         inputPasswordLogin = findViewById(R.id.inputPasswordLogin);
         btnTogglePassLogin = findViewById(R.id.btnTogglePassLogin);
         btnLogin = findViewById(R.id.btnLogin);
         textForgot = findViewById(R.id.textForgot);
 
-        // Register UI
         inputNamaReg = findViewById(R.id.inputNamaReg);
         inputPhoneReg = findViewById(R.id.inputPhoneReg);
         inputRtReg = findViewById(R.id.inputRtReg);
@@ -90,77 +90,59 @@ public class LoginActivity extends AppCompatActivity {
         btnRegisterAction = findViewById(R.id.btnRegisterAction);
     }
 
+    private void setupSpinnerRt() {
+        String[] rtOptions = {"01", "02", "03", "04"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, rtOptions);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputRtReg.setAdapter(adapter);
+    }
+
     private void setupTabs() {
-        // Klik Tab MASUK
         btnMasukTab.setOnClickListener(v -> {
             if (layoutLogin.getVisibility() == View.VISIBLE) return;
-
-            // Animasi Magic Android
             TransitionManager.beginDelayedTransition(mainContainer);
-
             layoutRegister.setVisibility(View.GONE);
             layoutLogin.setVisibility(View.VISIBLE);
-
-            // Ubah Style Tombol Tab
             updateTabStyle(true);
         });
 
-        // Klik Tab DAFTAR
         btnDaftarTab.setOnClickListener(v -> {
             if (layoutRegister.getVisibility() == View.VISIBLE) return;
-
-            // Animasi Magic Android
             TransitionManager.beginDelayedTransition(mainContainer);
-
             layoutLogin.setVisibility(View.GONE);
             layoutRegister.setVisibility(View.VISIBLE);
-
-            // Ubah Style Tombol Tab
             updateTabStyle(false);
         });
     }
 
     private void updateTabStyle(boolean isLoginActive) {
         if (isLoginActive) {
-            // Masuk Aktif: Putih, Teks Hitam
             btnMasukTab.setBackgroundResource(R.drawable.rounded_button);
             btnMasukTab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
             btnMasukTab.setTextColor(Color.BLACK);
-
-            // Daftar Inaktif: Transparan, Teks Abu
             btnDaftarTab.setBackgroundColor(Color.TRANSPARENT);
             btnDaftarTab.setTextColor(ContextCompat.getColor(this, R.color.gray));
         } else {
-            // Daftar Aktif: Putih, Teks Hitam
             btnDaftarTab.setBackgroundResource(R.drawable.rounded_button);
             btnDaftarTab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
             btnDaftarTab.setTextColor(Color.BLACK);
-
-            // Masuk Inaktif: Transparan, Teks Abu
             btnMasukTab.setBackgroundColor(Color.TRANSPARENT);
             btnMasukTab.setTextColor(ContextCompat.getColor(this, R.color.gray));
         }
     }
 
     private void setupPasswordToggles() {
-        // Toggle Login Password
-        btnTogglePassLogin.setOnClickListener(v -> {
-            isLoginPassVisible = togglePassword(inputPasswordLogin, btnTogglePassLogin, isLoginPassVisible);
-        });
-
-        // Toggle Register Password
-        btnTogglePassReg.setOnClickListener(v -> {
-            isRegPassVisible = togglePassword(inputPassReg, btnTogglePassReg, isRegPassVisible);
-        });
+        btnTogglePassLogin.setOnClickListener(v -> isLoginPassVisible = togglePassword(inputPasswordLogin, btnTogglePassLogin, isLoginPassVisible));
+        btnTogglePassReg.setOnClickListener(v -> isRegPassVisible = togglePassword(inputPassReg, btnTogglePassReg, isRegPassVisible));
     }
 
     private boolean togglePassword(EditText input, ImageView icon, boolean isVisible) {
         if (isVisible) {
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            icon.setImageResource(R.drawable.icon_mata2); // Mata tertutup
+            icon.setImageResource(R.drawable.icon_mata2);
         } else {
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            icon.setImageResource(R.drawable.icon_mata1); // Mata terbuka
+            icon.setImageResource(R.drawable.icon_mata1);
         }
         input.setSelection(input.getText().length());
         return !isVisible;
@@ -170,7 +152,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             String phone = inputPhoneLogin.getText().toString().trim();
             String pass = inputPasswordLogin.getText().toString().trim();
-
             if (phone.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Isi nomor telepon dan password!", Toast.LENGTH_SHORT).show();
             } else {
@@ -178,19 +159,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnRegisterAction.setOnClickListener(v -> {
-            performRegister();
-        });
+        btnRegisterAction.setOnClickListener(v -> performRegister());
+
         textForgot.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
             startActivity(intent);
         });
     }
 
-    // --- LOGIC API (Diambil dari kode lama Anda) ---
-
+    // --- LOGIC LOGIN UTAMA ---
     private void performLogin(String telepon, String password) {
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php"; // Cek URL Anda
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php"; // Ganti URL Server Kamu
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -199,28 +178,46 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject obj = new JSONObject(response);
                         if (obj.getBoolean("success")) {
                             JSONObject user = obj.getJSONObject("data");
+
+                            // 1. Ambil Data dari JSON
                             String nama = user.getString("nama");
                             String id_warga = String.valueOf(user.getInt("id"));
                             String id_rt = user.getString("id_rt");
+                            String role = user.getString("role"); // 'Warga', 'KetuaRT', atau 'KetuaRW'
 
+                            // 2. Simpan ke SharedPreferences
                             SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
                             prefs.edit()
                                     .putString("id", id_warga)
                                     .putString("id_rt", id_rt)
-                                    .putString("nama", nama)  // <--- TAMBAHKAN BARIS INI
+                                    .putString("nama", nama)
+                                    .putString("role", role)
                                     .apply();
 
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                            intent.putExtra("nama_user", nama);
+
+                            // 3. Logic Arahkan ke Dashboard Berdasarkan Role
+                            Intent intent;
+
+                            if (role.equalsIgnoreCase("KetuaRT")) {
+                                intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
+                            } else if (role.equalsIgnoreCase("KetuaRW")) {
+                                intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
+                            } else {
+                                // Default Warga
+                                intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            }
+
+                            // 4. Jalankan Intent
                             startActivity(intent);
-                            finish();
+                            finish(); // Tutup LoginActivity agar user tidak bisa back ke login
+
                         } else {
                             Toast.makeText(this, obj.getString("message"), Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(this, "Error parsing data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Error parsing data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> Toast.makeText(this, "Login Gagal: " + error.getMessage(), Toast.LENGTH_SHORT).show()
@@ -239,7 +236,10 @@ public class LoginActivity extends AppCompatActivity {
     private void performRegister() {
         String nama = inputNamaReg.getText().toString();
         String telepon = inputPhoneReg.getText().toString();
-        String id_rt = inputRtReg.getText().toString();
+        String id_rt = "";
+        if (inputRtReg.getSelectedItem() != null) {
+            id_rt = inputRtReg.getSelectedItem().toString();
+        }
         String password = inputPassReg.getText().toString();
 
         if(nama.isEmpty() || telepon.isEmpty() || id_rt.isEmpty() || password.isEmpty()){
@@ -247,15 +247,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/register.php"; // Cek URL Anda
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/register.php";
+        String finalIdRt = id_rt;
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
                     Log.d("API_REG", response);
-                    Toast.makeText(this, "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show();
-
-                    // Otomatis pindah ke tab login setelah sukses
-                    btnMasukTab.performClick();
+                    Toast.makeText(this, "Permintaan registrasi dikirim!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, PendingRegisterActivity.class);
+                    startActivity(intent);
                 },
                 error -> Toast.makeText(this, "Gagal Daftar: " + error.getMessage(), Toast.LENGTH_SHORT).show()
         ){
@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("nama", nama);
                 params.put("telepon", telepon);
-                params.put("id_rt", id_rt);
+                params.put("id_rt", finalIdRt);
                 params.put("password", password);
                 return params;
             }
