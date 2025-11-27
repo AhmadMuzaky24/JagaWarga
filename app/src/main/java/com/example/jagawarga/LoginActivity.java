@@ -234,19 +234,20 @@ public class LoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    // --- LOGIC PEMBAGIAN DASHBOARD (ROLE CHECK) ---
+    // --- LOGIC PEMBAGIAN DASHBOARD (STRICT MODE) ---
     private void redirectDashboard(String role, String namaUser) {
         Intent intent;
 
-        // Gunakan equalsIgnoreCase agar 'KetuaRT' sama dengan 'ketuart' (untuk jaga-jaga)
-        // Tapi karena DB kamu ENUM, isinya pasti presisi 'KetuaRT' atau 'KetuaRW'
+        // Kita gunakan .equals() agar SAMA PERSIS dengan ENUM di Database
+        // ENUM di DB: 'KetuaRT', 'KetuaRW', 'Warga'
 
-        if (role.equalsIgnoreCase("KetuaRT")) {
+        if (role.equals("KetuaRT")) {
             intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
-        } else if (role.equalsIgnoreCase("KetuaRW")) {
+        } else if (role.equals("KetuaRW")) {
             intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
         } else {
-            // Default untuk 'Warga' atau jika role kosong
+            // Default masuk ke Dashboard Warga
+            // (Termasuk jika role = "Warga" atau role tidak dikenali)
             intent = new Intent(LoginActivity.this, DashboardActivity.class);
         }
 
