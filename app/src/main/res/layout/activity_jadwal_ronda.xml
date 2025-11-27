@@ -14,8 +14,8 @@
         android:id="@+id/btnBackJadwal"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/bg_back_button_blue"
         android:contentDescription="@string/cd_kembali"
         android:padding="10dp"
@@ -31,14 +31,15 @@
         android:id="@+id/textTitleJadwal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="Jadwal Ronda"
         android:textColor="@color/blue"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/btnBackJadwal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/btnBackJadwal" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardTanggalDanJadwal"

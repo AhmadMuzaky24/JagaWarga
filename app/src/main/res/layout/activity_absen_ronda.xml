@@ -16,14 +16,15 @@
         android:id="@+id/textTitleAbsen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:text="Absen Ronda"
         android:textColor="@color/blue"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/btnBackAbsen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/btnBackAbsen" />
 
     <ImageButton
         android:id="@+id/btnBackAbsen"

@@ -25,7 +25,7 @@
             android:id="@+id/imgAbsenIllustration"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="64dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/cd_absen_illustration"
             android:scaleType="fitCenter"
@@ -40,7 +40,7 @@
             android:id="@+id/btnBackAbsen"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_back_button_blue"
             android:contentDescription="@string/cd_kembali"
             android:padding="10dp"
@@ -129,15 +129,15 @@
             android:id="@+id/textTitleAbsen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:text="@string/title_tukar_jadwal"
+            android:text="Tukar Jadwal"
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/btnBackAbsen"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/btnBackAbsen" />
 
         <!-- Input ID Jadwal Saya -->
 

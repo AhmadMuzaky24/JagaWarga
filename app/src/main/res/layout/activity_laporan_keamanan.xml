@@ -17,10 +17,18 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <!-- Tombol Back -->
+
+        <!-- Judul -->
+
+        <!-- Ilustrasi -->
+
+        <!-- Jenis Laporan -->
+
         <ImageButton
             android:id="@+id/btnBackLaporan"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_back_button_blue"
             android:contentDescription="Kembali"
             android:padding="10dp"
@@ -29,30 +37,11 @@
             app:srcCompat="@drawable/ic_back_arrow"
             app:tint="@android:color/white" />
 
-        <!-- Judul -->
-        <TextView
-            android:id="@+id/textTitleLaporan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Laporan Keamanan"
-            android:textColor="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Ilustrasi -->
-
-        <!-- Jenis Laporan -->
-
         <ImageView
             android:id="@+id/imgLaporanIllustration"
             android:layout_width="0dp"
             android:layout_height="260dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/absen_illustration"
@@ -60,6 +49,20 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textTitleLaporan" />
+
+        <TextView
+            android:id="@+id/textTitleLaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laporan Keamanan"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/btnBackLaporan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnBackLaporan" />
 
         <TextView
             android:id="@+id/textJenisLaporan"
@@ -148,12 +151,12 @@
             android:id="@+id/btnUploadLaporanKeamanan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="148dp"
+            android:layout_marginBottom="124dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:text="Upload Laporan"
-            android:textColor="@android:color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

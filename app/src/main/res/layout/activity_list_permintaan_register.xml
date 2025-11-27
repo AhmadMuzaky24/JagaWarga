@@ -13,10 +13,13 @@
         android:padding="24dp">
 
         <!-- Header: Tombol Back -->
+
+        <!-- Header: Judul -->
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_back_button_blue"
             android:contentDescription="Kembali"
             android:padding="10dp"
@@ -26,34 +29,36 @@
             app:srcCompat="@drawable/ic_back_arrow"
             app:tint="@android:color/white" />
 
-        <!-- Header: Judul -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="List Permintaan"
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
 
         <!-- Toggle Switch Container -->
+
+        <!-- Tab Absensi (INAKTIF) -->
+
         <ImageView
             android:id="@+id/tabBackground"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="76dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:srcCompat="@drawable/rounded_button_2" />
 
-        <!-- Tab Absensi (INAKTIF) -->
         <Button
             android:id="@+id/btnTabAbsensi"
             style="@style/Widget.AppCompat.Button.Borderless"
