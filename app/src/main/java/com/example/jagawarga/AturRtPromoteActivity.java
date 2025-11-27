@@ -3,6 +3,7 @@ package com.example.jagawarga;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class AturRtPromoteActivity extends AppCompatActivity {
 
     private EditText etIdWarga, etTelepon;
     private Button btnAction;
+    private ImageButton btnBack;
     private TextView tabPromosikan, tabTurunkan;
 
     private static final String BASE_URL = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/";
@@ -37,6 +39,8 @@ public class AturRtPromoteActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        btnBack = findViewById(R.id.btnBack);
+
         etIdWarga   = findViewById(R.id.inputIDWarga);
         etTelepon   = findViewById(R.id.inputPhoneWarga);
         btnAction   = findViewById(R.id.btnActionPromote);
@@ -59,6 +63,12 @@ public class AturRtPromoteActivity extends AppCompatActivity {
                     AturRtRevokeActivity.class
             ));
             finish(); // supaya back tidak bolak-balik
+        });
+    }
+
+    private void setupBackButton() {
+        btnBack.setOnClickListener(v -> {
+            finish();
         });
     }
 

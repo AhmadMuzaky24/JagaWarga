@@ -3,6 +3,7 @@ package com.example.jagawarga;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import java.util.Map;
 public class AturRtRevokeActivity extends AppCompatActivity {
 
     private EditText etIdWarga, etTelepon;
+    private ImageButton btnBack;
     private Button btnAction;
     private TextView tabPromosikan, tabTurunkan;
 
@@ -37,6 +39,8 @@ public class AturRtRevokeActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        btnBack = findViewById(R.id.btnBack);
+
         etIdWarga   = findViewById(R.id.inputIDWarga);
         etTelepon   = findViewById(R.id.inputPhoneWarga);
         btnAction   = findViewById(R.id.btnActionRevoke);
@@ -60,6 +64,12 @@ public class AturRtRevokeActivity extends AppCompatActivity {
         // Tab Turunkan → posisi sekarang, tidak pindah
         tabTurunkan.setOnClickListener(v -> {
             // opsional: ubah style tab
+        });
+    }
+
+    private void setupBackButton() {
+        btnBack.setOnClickListener(v -> {
+            finish();
         });
     }
 
