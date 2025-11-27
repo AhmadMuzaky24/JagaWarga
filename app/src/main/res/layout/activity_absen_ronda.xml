@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
-    android:padding="24dp"
-    tools:context=".AbsenRondaActivity">
-
-    <!-- Tombol Back -->
-
-    <!-- Judul -->
+    android:fillViewport="true"> <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/textTitleAbsen"
@@ -40,12 +38,24 @@
         app:srcCompat="@drawable/ic_back_arrow"
         app:tint="@android:color/white" />
 
+    <ImageView
+        android:id="@+id/imgAbsenIllustration"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/absen_illustration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTitleAbsen" />
+
     <TextView
         android:id="@+id/textTanggalAbsen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         android:text="Tanggal Absen"
         android:textColor="@color/gray"
         android:textSize="14sp"
@@ -56,15 +66,14 @@
         android:id="@+id/Tanggal_absen"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
-        android:gravity="center"
-        android:text="   Sabtu, 22 November 2025"
-        android:textAlignment="textStart"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:text="Sabtu, 22 November 2025"
         android:textColor="#83040303"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTanggalAbsen" />
 
@@ -73,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="ID Jadwal Ronda"
         android:textColor="@color/gray"
         android:textSize="14sp"
@@ -84,37 +93,21 @@
         android:id="@+id/insert_absenID"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/btnUploadLaporan"
+        android:paddingStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textShift"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <ImageView
-        android:id="@+id/imgAbsenIllustration"
-        android:layout_width="298dp"
-        android:layout_height="323dp"
-        android:layout_marginTop="40dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/absen_illustration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textTitleAbsen" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textShift" />
 
     <Button
         android:id="@+id/btnUploadLaporan"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/blue"
         android:text="Kirim Absensi"
@@ -123,8 +116,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insert_absenID"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
