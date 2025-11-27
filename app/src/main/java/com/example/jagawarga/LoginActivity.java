@@ -33,26 +33,26 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Container & Layouts
+    // Container Views
     private ViewGroup mainContainer;
     private LinearLayout layoutLogin, layoutRegister;
 
     // Tab Buttons
     private Button btnMasukTab, btnDaftarTab;
 
-    // Login Widgets
+    // Login Fields
     private EditText inputPhoneLogin, inputPasswordLogin;
     private ImageView btnTogglePassLogin;
     private Button btnLogin;
     private TextView textForgot;
 
-    // Register Widgets
+    // Register Fields
     private EditText inputNamaReg, inputPhoneReg, inputPassReg;
     private Spinner inputRtReg;
     private ImageView btnTogglePassReg;
     private Button btnRegisterAction;
 
-    // State Variables
+    // State
     private boolean isLoginPassVisible = false;
     private boolean isRegPassVisible = false;
 
@@ -167,9 +167,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // --- LOGIC LOGIN UTAMA ---
+    // --- LOGIC LOGIN UTAMA (UPDATE DI SINI) ---
     private void performLogin(String telepon, String password) {
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php"; // Ganti URL Server Kamu
+        // Ganti URL Server Kamu
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -191,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .putString("id", id_warga)
                                     .putString("id_rt", id_rt)
                                     .putString("nama", nama)
-                                    .putString("role", role)
+                                    .putString("role", role) // Simpan Role juga
                                     .apply();
 
                             Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
@@ -208,9 +209,12 @@ public class LoginActivity extends AppCompatActivity {
                                 intent = new Intent(LoginActivity.this, DashboardActivity.class);
                             }
 
-                            // 4. Jalankan Intent
+                            // 4. Kirim nama user ke intent juga (opsional, backup)
+                            intent.putExtra("nama_user", nama);
+
+                            // 5. Jalankan Intent
                             startActivity(intent);
-                            finish(); // Tutup LoginActivity agar user tidak bisa back ke login
+                            finish(); // Tutup LoginActivity
 
                         } else {
                             Toast.makeText(this, obj.getString("message"), Toast.LENGTH_LONG).show();
