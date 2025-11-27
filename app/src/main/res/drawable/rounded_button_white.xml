@@ -4,8 +4,8 @@
     <!-- Warna latar tomboll -->
     <solid android:color="#FFFFFF" />
 
-    <!-- Sudut melengkung -->
-    <corners android:radius="10dp" />
+    <!-- Sudut melengkungg -->
+    <corners android:radius="11dp" />
 
     <!-- Opsional: padding di dalam tombol -->
     <padding
