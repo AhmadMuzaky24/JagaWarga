@@ -39,6 +39,10 @@
         </activity>
 
         <activity
+            android:name=".ListPermintaanActivity">
+        </activity>
+
+        <activity
             android:name=".DashboardRwActivity">
         </activity>
 
