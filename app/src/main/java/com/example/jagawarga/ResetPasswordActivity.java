@@ -38,7 +38,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        inputPhone = findViewById(R.id.inputPhone);
+        inputPhone = findViewById(R.id.inputPhoneWarga);
         inputPass = findViewById(R.id.inputPass);
         btnReset = findViewById(R.id.btnReset);
         btnBack = findViewById(R.id.btnBack);

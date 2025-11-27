@@ -69,7 +69,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -126,16 +126,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Terima"
+                            android:text="Kelola Ketua RT"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Laporan"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <!-- Buat Pengumuman -->
@@ -165,56 +159,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Buat"
+                            android:text="Buat Pengumuman"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pengumuman"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <!-- List Permintaan -->
-                    <LinearLayout
-                        android:id="@+id/menuListPermintaan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="53dp"
-                            android:layout_height="53dp"
-                            android:background="@drawable/menu_button_white"
-                            android:padding="10dp">
-
-                            <!-- placeholder icon list -->
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/icon_schedule" />
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="List"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Permintaan"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- ROW 2 : Buat Laporan (sendirian di kiri, tetap responsive) -->
@@ -224,36 +175,6 @@
                     android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/menuBuatLaporan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="53dp"
-                            android:layout_height="53dp"
-                            android:background="@drawable/menu_button_white"
-                            android:padding="10dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/icon_laporan" />
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Buat Laporan"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-                    </LinearLayout>
 
                     <!-- Spacer biar tetap rata kiri tapi responsif -->
                     <View

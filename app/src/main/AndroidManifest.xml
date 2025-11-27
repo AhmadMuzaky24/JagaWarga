@@ -83,7 +83,13 @@
             android:name=".TerimaLaporanActivity">
         </activity>
 
+        <activity
+            android:name=".AturRtPromoteActivity">
+        </activity>
 
+        <activity
+            android:name=".AturRtRevokeActivity">
+        </activity>
 
 
     </application>

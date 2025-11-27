@@ -113,36 +113,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="RT"
+            android:text="ID Warga"
             android:textColor="@color/blue"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabBackground" />
-
-        <Spinner
-            android:id="@+id/spinnerRt"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edittext_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelRt" />
 
         <TextView
             android:id="@+id/labelPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="No. Telp RT"
+            android:text="No. Telp Warga"
             android:textColor="@color/blue"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinnerRt" />
+            app:layout_constraintTop_toBottomOf="@+id/inputIDWarga" />
 
         <EditText
-            android:id="@+id/inputPhone"
-            android:layout_width="0dp"
+            android:id="@+id/inputPhoneWarga"
+            android:layout_width="363dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_background"
@@ -150,28 +140,41 @@
             android:paddingHorizontal="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelPhone" />
+            app:layout_constraintTop_toBottomOf="@+id/labelPhone" />
 
         <!-- Main Action Button -->
+
+        <EditText
+            android:id="@+id/inputIDWarga"
+            android:layout_width="363dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="phone"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelRt" />
+
         <Button
             android:id="@+id/btnActionPromote"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="48dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/blue"
             android:text="Promosikan"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputPhone"
+            app:layout_constraintTop_toBottomOf="@id/inputPhoneWarga"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
