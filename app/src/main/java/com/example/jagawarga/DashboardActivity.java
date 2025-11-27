@@ -26,7 +26,6 @@ public class DashboardActivity extends AppCompatActivity {
 
     // UI Components
     private LinearLayout menuAbsen, menuTukar, menuLapor, menuJadwal;
-    private Button btnToGenerate;
     private TextView tvGreeting, tanggalCurrent;
 
     // User Data
@@ -48,12 +47,6 @@ public class DashboardActivity extends AppCompatActivity {
         initViews();
         setTodayDate();
         setGreeting();
-
-        // --- BUTTON SPECIAL ---
-        btnToGenerate.setOnClickListener(v -> {
-            Intent i = new Intent(DashboardActivity.this, uji_coba_generate_jadwal.class);
-            startActivity(i);
-        });
 
         // --- SETUP MENU NAVIGATION ---
         setupMenuNavigation(menuAbsen, AbsenRondaActivity.class);
@@ -91,7 +84,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         tvGreeting       = findViewById(R.id.tvGreeting);
         tanggalCurrent   = findViewById(R.id.tanggal_current);
-        btnToGenerate    = findViewById(R.id.btnToGenerate);
     }
 
     private void setGreeting() {
