@@ -1,13 +1,12 @@
 package com.example.jagawarga;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,119 +26,114 @@ import java.util.Map;
 
 public class AbsenRondaActivity extends AppCompatActivity {
 
-    // --- field (property) class ---
+    // --- UI Components ---
     private ImageButton btnBackAbsen;
     private Button btnKirimAbsen;
     private EditText insert_absenID;
+    private TextView textTanggalAbsen;
+
+    // --- URL API ---
+    // Pastikan URL ini sesuai dengan Cloudflare Tunnel kamu yang aktif
+    // Dan pastikan file insert_absen.php sudah dibuat di server
+    private static final String URL_INSERT_ABSEN = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/insert_absen.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // pastikan namanya sama dengan file xml: res/layout/activity_absen_ronda.xml
+        // Pastikan layout XML-nya benar (activity_absen_ronda)
         setContentView(R.layout.activity_absen_ronda);
 
         initViews();
+        setupDate();
         setupListeners();
+    }
 
+    // --- 1. Inisialisasi View ---
+    private void initViews() {
+        btnBackAbsen = findViewById(R.id.btnBackAbsen);
+        // Sesuaikan ID tombol kirim dengan di XML (btnUploadLaporan)
+        btnKirimAbsen = findViewById(R.id.btnUploadLaporan);
+        insert_absenID = findViewById(R.id.insert_absenID);
+        textTanggalAbsen = findViewById(R.id.Tanggal_absen);
+    }
 
-
-
-        //Set tanggal hari ini
-        TextView Tanggal_absen = findViewById(R.id.Tanggal_absen);
+    // --- 2. Setup Tanggal Hari Ini ---
+    private void setupDate() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", new Locale("id", "ID"));
         String tanggal = sdf.format(calendar.getTime());
-        Tanggal_absen.setText(tanggal);
+        textTanggalAbsen.setText(tanggal);
     }
 
-    // ---------------- PBO: method terpisah ----------------
-
-    /** Ambil semua view dari XML */
-    private void initViews() {
-        btnBackAbsen       = findViewById(R.id.btnBackAbsen);
-        btnKirimAbsen = findViewById(R.id.btnUploadLaporan);
-        insert_absenID= findViewById(R.id.insert_absenID);
-    }
-
-    /** Listener tombol back & upload */
+    // --- 3. Setup Listener Tombol ---
     private void setupListeners() {
-        // Back ke halaman sebelumnya (DashboardActivity) dengan stack Android biasa
-        btnBackAbsen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();   // cukup finish, otomatis balik ke Dashboard
-            }
-        });
+        // Tombol Back
+        btnBackAbsen.setOnClickListener(v -> finish());
 
+        // Tombol Kirim Absen
         btnKirimAbsen.setOnClickListener(v -> {
+            String idJadwal = insert_absenID.getText().toString().trim();
 
-            String id_jadwal = insert_absenID.getText().toString().trim();
-
-            if (id_jadwal.isEmpty()) {
-                Toast.makeText(this, "ID Jadwal tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            if (idJadwal.isEmpty()) {
+                Toast.makeText(this, "ID Jadwal tidak boleh kosong!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            kirimAbsen(id_jadwal);   // <<== Kirim nilai yang user masukkan
+            kirimAbsen(idJadwal);
         });
-
     }
 
-    private void kirimAbsen(String id_jadwal) {
+    // --- 4. Logic Kirim Data ke Server ---
+    private void kirimAbsen(String idJadwal) {
 
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/insert_absen.php";
+        // Tampilkan Loading agar User Menunggu
+        ProgressDialog loading = new ProgressDialog(this);
+        loading.setMessage("Mengirim permintaan absen...");
+        loading.setCancelable(false); // Tidak bisa di-cancel user
+        loading.show();
 
-        StringRequest request = new StringRequest(Request.Method.POST, url,
+        StringRequest request = new StringRequest(Request.Method.POST, URL_INSERT_ABSEN,
                 response -> {
+                    loading.dismiss(); // Hilangkan loading
                     Log.d("ABSEN_RESPONSE", response);
 
                     try {
                         JSONObject obj = new JSONObject(response);
-
                         boolean success = obj.getBoolean("success");
+                        String message = obj.getString("message");
 
                         if (success) {
-                            Toast.makeText(this, "Absen berhasil dikirim!!", Toast.LENGTH_SHORT).show();
+                            // Sukses: Tampilkan pesan dan kosongkan input
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                            insert_absenID.setText("");
+
+                            // Opsional: Jika ingin langsung keluar setelah absen berhasil
+                            // finish();
                         } else {
-                            Toast.makeText(this, obj.getString("Absen gagal, masukkan ID Jadwal yang benar!"), Toast.LENGTH_LONG).show();
+                            // Gagal dari logic PHP (misal ID Jadwal salah)
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                         }
 
                     } catch (Exception e) {
-                        Log.e("ABSEN_PARSE_ERROR", e.toString());
-                        Toast.makeText(this, "Absen gagal, masukkan ID Jadwal yang benar!", Toast.LENGTH_SHORT).show();
+                        Log.e("ABSEN_PARSE", e.toString());
+                        Toast.makeText(this, "Gagal memproses respon server", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
-                    String errorMsg;
-
-                    if (error.networkResponse != null && error.networkResponse.data != null) {
-                        errorMsg = new String(error.networkResponse.data);
-                    } else {
-                        errorMsg = error.toString();
-                    }
-
-                    Log.e("ABSEN_ERROR", errorMsg);
-                    Toast.makeText(this, "Gagal mengirim absen!", Toast.LENGTH_SHORT).show();
+                    loading.dismiss(); // Hilangkan loading
+                    Log.e("ABSEN_NETWORK", error.toString());
+                    Toast.makeText(this, "Gagal terhubung ke server. Cek koneksi internet!", Toast.LENGTH_SHORT).show();
                 }
         ) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("id_jadwal", id_jadwal);
+                // Parameter 'id_jadwal' ini akan ditangkap oleh $_POST['id_jadwal'] di PHP
+                params.put("id_jadwal", idJadwal);
                 return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-                return headers;
             }
         };
 
         Volley.newRequestQueue(this).add(request);
     }
-
-
-
 }
