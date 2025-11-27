@@ -57,7 +57,7 @@ public class AbsenRondaActivity extends AppCompatActivity {
     /** Ambil semua view dari XML */
     private void initViews() {
         btnBackAbsen       = findViewById(R.id.btnBackAbsen);
-        btnKirimAbsen   = findViewById(R.id.btnKirimAbsen);
+        btnKirimAbsen = findViewById(R.id.btnUploadLaporan);
         insert_absenID= findViewById(R.id.insert_absenID);
     }
 
