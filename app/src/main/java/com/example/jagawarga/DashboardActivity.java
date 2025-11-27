@@ -109,6 +109,10 @@ public class DashboardActivity extends AppCompatActivity {
         tvContactLocation = findViewById(R.id.tvContactLocation);
         imgWhatsapp   = findViewById(R.id.imgWhatsapp);
         layoutContactCard = findViewById(R.id.layoutContactContent);
+
+        // Pengumuman
+        RecyclerView rvPengumuman = findViewById(R.id.rvPengumuman);
+        rvPengumuman.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void setGreeting() {
@@ -276,6 +280,64 @@ public class DashboardActivity extends AppCompatActivity {
         };
 
         Volley.newRequestQueue(this).add(request);
+    }
+
+    private void loadPengumuman() {
+        String idRt = PrefUtils.getIdRt(this);
+        if(idRt == null) return;
+
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/get_pengumuman.php?id_rt=" + idRt;
+
+        StringRequest req = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (obj.getBoolean("success")) {
+                            JSONArray data = obj.getJSONArray("data");
+
+                            // Set Adapter
+                            PengumumanAdapter adapter = new PengumumanAdapter(data);
+                            rvPengumuman.setAdapter(adapter);
+                        }
+                    } catch (Exception e) { e.printStackTrace(); }
+                },
+                error -> {}
+        );
+        Volley.newRequestQueue(this).add(req);
+    }
+
+    class PengumumanAdapter extends RecyclerView.Adapter<PengumumanAdapter.Holder> {
+        JSONArray data;
+        public PengumumanAdapter(JSONArray data) { this.data = data; }
+
+        @Override
+        public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pengumuman, parent, false);
+            return new Holder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(Holder holder, int position) {
+            try {
+                JSONObject item = data.getJSONObject(position);
+                holder.tvJudul.setText(item.getString("judul"));
+                holder.tvIsi.setText(item.getString("isi"));
+                holder.tvTanggal.setText(item.getString("tanggal_fmt"));
+            } catch (Exception e) {}
+        }
+
+        @Override
+        public int getItemCount() { return data.length(); }
+
+        class Holder extends RecyclerView.ViewHolder {
+            TextView tvJudul, tvIsi, tvTanggal;
+            public Holder(View v) {
+                super(v);
+                tvJudul = v.findViewById(R.id.tvJudulPengumuman);
+                tvIsi = v.findViewById(R.id.tvIsiPengumuman);
+                tvTanggal = v.findViewById(R.id.tvTanggalPengumuman);
+            }
+        }
     }
 }
 
