@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         String id_rt = binding.inputPhone2.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        String url = "https://examples-underwear-clarke-yang.trycloudflare.com/jagawarga/register.php";
+        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/register.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

@@ -32,7 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
     private String idWarga, idRt, namaUser;
 
     // API Endpoint (Cloudflared)
-    private static final String BASE_URL = "https://examples-underwear-clarke-yang.trycloudflare.com/jagawarga/";
+    private static final String BASE_URL = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/";
     // Ganti dengan URL kamu sendiri
 
     @Override
