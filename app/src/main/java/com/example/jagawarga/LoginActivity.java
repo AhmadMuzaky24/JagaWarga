@@ -61,11 +61,24 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Cek apakah user sudah login sebelumnya (Auto Login)
+        // checkSession();
+
         initViews();
         setupSpinnerRt();
         setupTabs();
         setupPasswordToggles();
         setupActionButtons();
+    }
+
+    private void checkSession() {
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        String savedId = prefs.getString("id", null);
+        String savedRole = prefs.getString("role", "Warga");
+
+        if (savedId != null) {
+            redirectDashboard(savedRole, prefs.getString("nama", "User"));
+        }
     }
 
     private void initViews() {
@@ -167,24 +180,29 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // --- LOGIC LOGIN UTAMA (UPDATE DI SINI) ---
+    // --- LOGIC LOGIN UTAMA YANG DIPERBAIKI ---
     private void performLogin(String telepon, String password) {
-        // Ganti URL Server Kamu
+        // Pastikan URL ini benar sesuai Cloudflare Tunnel kamu
         String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Log.d("API_LOGIN", response);
+                    Log.d("API_LOGIN", "Response Raw: " + response);
+
                     try {
                         JSONObject obj = new JSONObject(response);
-                        if (obj.getBoolean("success")) {
+
+                        // Periksa apakah field 'success' ada dan true
+                        if (obj.has("success") && obj.getBoolean("success")) {
                             JSONObject user = obj.getJSONObject("data");
 
-                            // 1. Ambil Data dari JSON
-                            String nama = user.getString("nama");
-                            String id_warga = String.valueOf(user.getInt("id"));
-                            String id_rt = user.getString("id_rt");
-                            String role = user.getString("role"); // 'Warga', 'KetuaRT', atau 'KetuaRW'
+                            // 1. Ambil Data dengan Aman (Gunakan optString agar tidak Crash)
+                            // Jika data null di JSON, dia akan pakai nilai default parameter kedua
+                            String nama = user.optString("nama", "Warga");
+                            String id_warga = user.optString("id", "0");
+                            String id_rt = user.optString("id_rt", "0");
+                            String role = user.optString("role", "Warga");
+                            String telp = user.optString("telepon", "");
 
                             // 2. Simpan ke SharedPreferences
                             SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
@@ -192,39 +210,30 @@ public class LoginActivity extends AppCompatActivity {
                                     .putString("id", id_warga)
                                     .putString("id_rt", id_rt)
                                     .putString("nama", nama)
-                                    .putString("role", role) // Simpan Role juga
+                                    .putString("role", role)
+                                    .putString("telepon", telp)
                                     .apply();
 
-                            Toast.makeText(this, "Selamat datang, " + nama, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Login Berhasil sebagai " + role, Toast.LENGTH_SHORT).show();
 
-                            // 3. Logic Arahkan ke Dashboard Berdasarkan Role
-                            Intent intent;
-
-                            if (role.equalsIgnoreCase("KetuaRT")) {
-                                intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
-                            } else if (role.equalsIgnoreCase("KetuaRW")) {
-                                intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
-                            } else {
-                                // Default Warga
-                                intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                            }
-
-                            // 4. Kirim nama user ke intent juga (opsional, backup)
-                            intent.putExtra("nama_user", nama);
-
-                            // 5. Jalankan Intent
-                            startActivity(intent);
-                            finish(); // Tutup LoginActivity
+                            // 3. Panggil fungsi redirect
+                            redirectDashboard(role, nama);
 
                         } else {
-                            Toast.makeText(this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                            // Jika login gagal (password salah dll)
+                            String msg = obj.optString("message", "Login Gagal");
+                            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(this, "Error parsing data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("LOGIN_PARSE_ERROR", "Error: " + e.getMessage());
+                        Toast.makeText(this, "Format data dari server salah!", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(this, "Login Gagal: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+                error -> {
+                    Log.e("LOGIN_NETWORK_ERROR", "Error: " + error.toString());
+                    Toast.makeText(this, "Gagal koneksi ke server", Toast.LENGTH_SHORT).show();
+                }
         ) {
             @Override
             protected Map<String, String> getParams() {
@@ -235,6 +244,33 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(this).add(request);
+    }
+
+    // Fungsi Terpisah untuk Mengatur Arah Dashboard
+    private void redirectDashboard(String role, String namaUser) {
+        Intent intent;
+
+        // Normalisasi string role (antisipasi huruf besar/kecil dari database)
+        String roleLower = role.toLowerCase();
+
+        if (roleLower.contains("KetuaRT")) {
+            // Role mengandung kata 'rt' (misal: "KetuaRT", "admin_rt", "RT")
+            intent = new Intent(LoginActivity.this, DashboardRtActivity.class);
+        } else if (roleLower.contains("KetuaRW")) {
+            // Role mengandung kata 'rw'
+            intent = new Intent(LoginActivity.this, DashboardRwActivity.class);
+        } else {
+            // Default ke Warga
+            intent = new Intent(LoginActivity.this, DashboardActivity.class);
+        }
+
+        // Kirim nama user (opsional, karena di Dashboard sudah ambil dari Prefs)
+        intent.putExtra("nama_user", namaUser);
+
+        // Mulai Activity dan hapus LoginActivity dari stack (biar gak bisa di-back)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void performRegister() {
