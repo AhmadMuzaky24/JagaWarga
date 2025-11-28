@@ -83,6 +83,7 @@
             android:name=".TerimaLaporanActivity">
         </activity>
 
+
         <activity
             android:name=".AturRtPromoteActivity">
         </activity>

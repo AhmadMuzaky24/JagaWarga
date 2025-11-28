@@ -108,7 +108,7 @@ public class DashboardRwActivity extends AppCompatActivity {
         // MENU: Buat Pengumuman -> BuatPengumumanActivity
         if (menuBuatPengumuman != null) {
             menuBuatPengumuman.setOnClickListener(v -> {
-                Intent intent = new Intent(DashboardRwActivity.this, LaporanKeamananActivity.class);
+                Intent intent = new Intent(DashboardRwActivity.this, BuatPengumumanActivity.class);
                 // bisa juga kirim nama RW / id RW jika perlu
                 intent.putExtra("id_rw", idRw);
                 startActivity(intent);
