@@ -30,12 +30,12 @@ public class ListPermintaanActivity extends AppCompatActivity {
     private Button btnTabAbsensi, btnTabRegister;
 
     // --- URL API REGISTER ---
-    private String URL_GET_PENDING_REG = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/get_pending_users.php";
-    private String URL_VALIDATE_REG    = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/validate_user.php";
+    private String URL_GET_PENDING_REG = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/get_pending_users.php";
+    private String URL_VALIDATE_REG    = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/validate_user.php";
 
     // --- URL API ABSENSI (BARU) ---
-    private String URL_GET_PENDING_ABSEN = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/get_pending_absen.php";
-    private String URL_VALIDATE_ABSEN    = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/validate_absen.php";
+    private String URL_GET_PENDING_ABSEN = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/get_pending_absen.php";
+    private String URL_VALIDATE_ABSEN    = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/validate_absen.php";
 
     private String currentIdRt = "";
 

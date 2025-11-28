@@ -98,7 +98,7 @@ public class DashboardRtActivity extends AppCompatActivity {
 
     // --- METHOD GENERATE JADWAL (Pindahan dari uji_coba) ---
     private void generateJadwal(String id_rt) {
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/generate_jadwal.php";
+        String url = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/generate_jadwal.php";
 
         ProgressDialog loading = new ProgressDialog(this);
         loading.setMessage("Sedang menyusun jadwal...");

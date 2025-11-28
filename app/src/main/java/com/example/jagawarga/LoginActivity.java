@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
     // --- LOGIC LOGIN UTAMA ---
     private void performLogin(String telepon, String password) {
         // UPDATE URL INI SESUAI TUNNEL TERBARU KAMU
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/login.php";
+        String url = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -274,7 +274,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/register.php";
+        String url = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/register.php";
         String finalIdRt = id_rt;
 
         StringRequest request = new StringRequest(Request.Method.POST, url,

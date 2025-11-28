@@ -29,7 +29,7 @@ public class TerimaLaporanActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     // GANTI DENGAN URL CLOUDFLARE/IP KAMU
-    private String URL_GET_LAPORAN = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/get_laporan_masuk.php";
+    private String URL_GET_LAPORAN = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/get_laporan_masuk.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

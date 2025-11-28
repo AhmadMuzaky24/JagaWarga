@@ -19,6 +19,7 @@
             android:id="@+id/logo"
             android:layout_width="70dp"
             android:layout_height="80dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/jjagawarga_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,13 +96,18 @@
             app:layout_constraintTop_toTopOf="@id/tabBackground" />
 
         <!-- KONTAINER FORM LOGIN (DEFAULT MUNCUL) -->
+
+        <!-- KONTAINER FORM REGISTER (DEFAULT DISEMBUNYIKAN) -->
         <LinearLayout
             android:id="@+id/layoutLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="345dp"
+            android:layout_marginTop="68dp"
             android:orientation="vertical"
             android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabBackground">
 
             <TextView
@@ -117,7 +123,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="phone"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -138,7 +145,8 @@
                     android:background="@drawable/edittext_background"
                     android:inputType="textPassword"
                     android:padding="12dp"
-                    android:paddingEnd="48dp" />
+                    android:paddingEnd="48dp"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/btnTogglePassLogin"
@@ -153,8 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/checkRemember"
@@ -162,17 +170,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Ingat Saya"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textForgot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="8dp"
                     android:text="Lupa Sandi?"
                     android:textColor="@color/blue"
-                    android:textStyle="bold"
                     android:textSize="12sp"
-                    android:padding="8dp"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <Button
@@ -180,7 +188,7 @@
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/blue"
@@ -188,9 +196,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
-        <!-- KONTAINER FORM REGISTER (DEFAULT DISEMBUNYIKAN) -->
         <LinearLayout
             android:id="@+id/layoutRegister"
             android:layout_width="match_parent"
@@ -213,6 +221,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 android:padding="12dp" />
 
             <TextView
@@ -229,6 +238,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="phone"
+                android:textSize="16sp"
                 android:padding="12dp" />
 
             <TextView
@@ -245,7 +255,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edittext_background"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:spinnerMode="dropdown"/>
 
             <TextView
@@ -267,6 +277,7 @@
                     android:background="@drawable/edittext_background"
                     android:inputType="textPassword"
                     android:padding="12dp"
+                    android:textSize="16sp"
                     android:paddingEnd="48dp" />
 
                 <ImageView

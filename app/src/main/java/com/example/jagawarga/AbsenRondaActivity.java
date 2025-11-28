@@ -31,7 +31,7 @@ public class AbsenRondaActivity extends AppCompatActivity {
     private TextView textTanggalAbsen;
 
     // URL API (Pastikan sudah benar)
-    private static final String URL_INSERT_ABSEN = "https://oldest-widely-shell-produced.trycloudflare.com/jagawarga/insert_absen.php";
+    private static final String URL_INSERT_ABSEN = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/insert_absen.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
