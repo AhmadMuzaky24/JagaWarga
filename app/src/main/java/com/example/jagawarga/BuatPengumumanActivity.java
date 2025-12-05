@@ -26,7 +26,7 @@ public class BuatPengumumanActivity extends AppCompatActivity {
     private ImageButton btnBack;
 
     // Pastikan URL ini sesuai dengan yang kamu pakai sekarang
-    private String URL_CREATE = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/create_pengumuman.php";
+    private String URL_CREATE = "hhttps://liberty-currencies-billion-release.trycloudflare.com/jagawarga/create_pengumuman.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

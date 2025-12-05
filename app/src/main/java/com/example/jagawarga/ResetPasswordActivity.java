@@ -77,7 +77,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private void resetPassword(String phone, String newPass) {
         // Ganti URL sesuai server Anda
-        String url = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/change_password.php";
+        String url = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/change_password.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

@@ -28,7 +28,7 @@ public class TukarJadwalActivity extends AppCompatActivity {
     private Button btnTukarJadwal;
 
     // GANTI dengan URL server kamu
-    private static final String SWAP_JADWAL_URL = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/swap_jadwal.php";
+    private static final String SWAP_JADWAL_URL = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/swap_jadwal.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

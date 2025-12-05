@@ -43,7 +43,7 @@ public class JadwalRondaActivity extends AppCompatActivity {
     SimpleDateFormat dateFormatDisplay;  // format tampil ke UI
 
     // === URL CLOUDFARE TUNNEL ===
-    private final String BASE_URL = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/";
+    private final String BASE_URL = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/";
     // contoh endpoint yang kamu buat → getjadwal.php?tanggal=YYYY-MM-DD
 
     @Override

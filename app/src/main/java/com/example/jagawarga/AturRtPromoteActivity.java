@@ -25,7 +25,7 @@ public class AturRtPromoteActivity extends AppCompatActivity {
     private ImageButton btnBack;
     private TextView tabPromosikan, tabTurunkan;
 
-    private static final String BASE_URL = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/";
+    private static final String BASE_URL = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/";
     private static final String ATUR_RT_URL = BASE_URL + "atur_rt.php";
 
     @Override

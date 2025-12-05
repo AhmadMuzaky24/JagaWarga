@@ -51,7 +51,7 @@ public class DashboardActivity extends AppCompatActivity {
     private String idWarga, idRt, namaUser;
     private String currentPosPhone = null;
 
-    private static final String BASE_URL = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/";
+    private static final String BASE_URL = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/";
     private static final String GET_POS_RONDA_URL = BASE_URL + "get_pos_ronda.php";
 
     @Override

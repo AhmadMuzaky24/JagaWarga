@@ -126,7 +126,7 @@ public class LaporanKeamananActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "https://newsletter-cod-jeff-cement.trycloudflare.com/jagawarga/laporan.php";
+        String url = "https://liberty-currencies-billion-release.trycloudflare.com/jagawarga/laporan.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
